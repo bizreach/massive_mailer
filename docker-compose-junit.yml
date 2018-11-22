@@ -1,7 +1,9 @@
 version: '3'
 services:
     gradle:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile_junit
         ports:
             - 8888:80
         depends_on:
