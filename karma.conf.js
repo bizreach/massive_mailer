@@ -3,6 +3,12 @@ module.exports = function(config) {
         basePath: './src/main/',
         colors: true,
         browsers: ['Chrome'],
+        customLaunchers: {
+          HeadlessChrome: {
+            base: 'ChromeHeadless',
+            flags: ['--no-sandbox']
+          }
+        },
         frameworks: ['jasmine'],
         files: [
             { pattern: 'webapp/resources/lib/bootstrap/js/jquery.js', watched: false },
