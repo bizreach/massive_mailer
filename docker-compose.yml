@@ -1,0 +1,24 @@
+version: '3'
+services:
+    gradle:
+        build: .
+        ports:
+            - 8888:80
+        depends_on:
+            - db
+#        volumes:
+#            - "./volumes/app:/var/www/html"
+        links:
+            - db
+    db:
+         build:
+           context: .
+           dockerfile: Dockerfile_mysql
+         environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=TRUE
+            - MYSQL_ROOT_PASSWORD=
+            - MYSQL_DATABASE=massive_mailer_unittest
+#        ports:
+#            - "13306:3306"
+#        volumes:
+#            - "./data/mysql:/var/lib/mysql"
