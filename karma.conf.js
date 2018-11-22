@@ -2,11 +2,14 @@ module.exports = function(config) {
     config.set({
         basePath: './src/main/',
         colors: true,
-        browsers: ['Chrome'],
+        browsers: ['HeadlessChrome'],
         customLaunchers: {
           HeadlessChrome: {
             base: 'ChromeHeadless',
-            flags: ['--no-sandbox']
+            flags: [
+                '--no-sandbox'
+            ],
+            debug: true
           }
         },
         frameworks: ['jasmine'],

@@ -1,0 +1,7 @@
+FROM alpine
+
+RUN apk add --update chromium nodejs nodejs-npm
+ENV CHROME_BIN=/usr/bin/chromium-browser
+WORKDIR /home
+COPY . /home
+RUN npm i && npm test
