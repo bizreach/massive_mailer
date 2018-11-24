@@ -101,7 +101,19 @@ docker-compose -f docker-compose_mysql.yml up -d
 mysql -h 127.0.0.1 -uroot
 ```
 
-3. Please setup /etc/hosts
+3. Please setup /etc/hosts :bow:
 ```
 127.0.0.1   localhost gradle-cucumber-mysql db
 ```
+
+## Cucumber setup for local development and test.
+
+1. Install cucumber for Mac
+```
+wget http://chromedriver.storage.googleapis.com/71.0.3578.33/chromedriver_mac64.zip
+unzip chromedriver_mac64.zip
+mv chromedriver /usr/local/bin/chromedriver
+chmod +x /usr/local/bin/chromedriver
+rm chromedriver_mac64.zip
+```
+
