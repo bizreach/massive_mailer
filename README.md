@@ -89,3 +89,19 @@ secure-file-priv=""
 
 `mysql.server start`
 
+## MySQL server setup for local development and test.
+
+1. Run docker
+```
+docker-compose -f docker-compose_mysql.yml up -d
+```
+
+2. Connect to MySQL
+```
+mysql -h 127.0.0.1 -uroot
+```
+
+3. Please setup /etc/hosts
+```
+127.0.0.1   localhost gradle-cucumber-mysql
+```
