@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql:
+    build: ./mysql
+    container_name: gradle-cucumber-mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
