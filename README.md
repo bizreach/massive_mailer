@@ -103,5 +103,5 @@ mysql -h 127.0.0.1 -uroot
 
 3. Please setup /etc/hosts
 ```
-127.0.0.1   localhost gradle-cucumber-mysql
+127.0.0.1   localhost gradle-cucumber-mysql db
 ```
