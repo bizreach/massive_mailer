@@ -89,6 +89,10 @@ secure-file-priv=""
 
 `mysql.server start`
 
+-------
+
+## For internal training
+
 ##### Pre-prerequisite for local.
 
 1. If you do not have npm, gradle, mysql please install it with brew.
@@ -99,7 +103,7 @@ brew install npm gradle mysql
 2. If you do not have JDK8 please install it from oracle official site.
 https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-## MySQL server setup for local development and test.
+##### MySQL server setup for local development and test.
 
 1. Run docker
 ```
@@ -116,7 +120,7 @@ mysql -h 127.0.0.1 -uroot
 127.0.0.1   localhost gradle-cucumber-mysql db
 ```
 
-## Cucumber setup for local development and test.
+##### Cucumber setup for local development and test.
 
 1. Install cucumber for Mac
 ```
