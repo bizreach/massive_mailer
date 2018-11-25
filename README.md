@@ -97,7 +97,7 @@ secure-file-priv=""
 
 1. If you do not have npm, gradle, mysql please install it with brew.
 ```
-brew install npm gradle mysql
+brew install npm gradle mysql wget
 ```
 
 2. If you do not have JDK8 please install it from oracle official site.
