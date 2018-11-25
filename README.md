@@ -89,6 +89,16 @@ secure-file-priv=""
 
 `mysql.server start`
 
+##### Pre-prerequisite for local.
+
+1. If you do not have npm, gradle, mysql please install it with brew.
+```
+brew install npm gradle mysql
+```
+
+2. If you do not have JDK8 please install it from oracle official site.
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
 ## MySQL server setup for local development and test.
 
 1. Run docker
@@ -116,4 +126,3 @@ mv chromedriver /usr/local/bin/chromedriver
 chmod +x /usr/local/bin/chromedriver
 rm chromedriver_mac64.zip
 ```
-
