@@ -1,8 +1,6 @@
 Feature:
   Admin can edit questions
 
-  # @now
-  # @developing
   Background: Display Edit Question page
     Given Edit Questionを開いている
     Then Descriptionに"2 +3 = ?"が表示される
@@ -49,10 +47,9 @@ Feature:
     When Addボタンを押す
     Then すでに存在している質問です というメッセージが表示される
 
-  @developing
   @now
   Scenario: 質問の追加が成功する
-    Given Add Questionを開いている
+    Given Edit Questionを開いている
     And Descriptionに"What is scrum?" を入力する
     And option1に"Scrum is Rugby"を入力する
     And option2に"Scrum is Baseball"を入力する
