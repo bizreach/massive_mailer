@@ -34,4 +34,12 @@ public class EditQuestionSteps {
         );
         assertTrue(result);
     }
+
+    @Then("^Edit画面のoption2に\"2\"が表示される$")
+    public void Edit画面のoption2に_が表示される() {
+        boolean result = driver.findElements(By.id("option2_value")).stream().anyMatch(el->
+                el.getAttribute("value").equals("2")
+        );
+        assertTrue(result);
+    }
 }

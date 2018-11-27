@@ -5,6 +5,7 @@ Feature:
     Given ID2のEdit Questionを開いている
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面のoption1に"1"が表示される
+    And Edit画面のoption2に"2"が表示される
 
   @now
   Scenario:
