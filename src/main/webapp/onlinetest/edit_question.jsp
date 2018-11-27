@@ -10,7 +10,7 @@
 
 
 <t:with_side_menu_and_status title="Edit Question">
-    <jsp:body>2 +3 = ?
+    <jsp:body>
 			<form name="addQuestion" id="addQuestion" method="post"
 				action="add_question">
 
@@ -31,7 +31,7 @@
 										<div class="col-lg-1">Description:</div>
 										<div class="col-lg-11">
 											<input type="text" class="form-control" name="description"
-												id="description" maxlength="200">
+												id="description" maxlength="200" value="2 +3 = ?">
 										</div>
 									</div>
 									<br> <br>
