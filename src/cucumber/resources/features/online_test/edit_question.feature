@@ -4,12 +4,13 @@ Feature:
   Background: Display Edit Question page
     Given ID2のEdit Questionを開いている
     Then Descriptionに"2 +3 = ?"が表示される
+    And Edit画面のoption1に"1"が表示される
+
   @now
   Scenario:
 
 
 #    Then Descriptionに"2 +3 = ?"が表示される
-#   And option1に"1"が表示される
 #   And option2に"2"が表示される
 #   And option3に"3"が表示される
 #   And option4に"4"が表示される

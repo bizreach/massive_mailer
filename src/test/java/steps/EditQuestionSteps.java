@@ -26,4 +26,12 @@ public class EditQuestionSteps {
         );
         assertTrue(result);
     }
+
+    @Then("^Edit画面のoption1に\"1\"が表示される$")
+    public void Edit画面のoption1に_が表示される() {
+        boolean result = driver.findElements(By.id("option1_value")).stream().anyMatch(el->
+                el.getAttribute("value").equals("1")
+        );
+        assertTrue(result);
+    }
 }
