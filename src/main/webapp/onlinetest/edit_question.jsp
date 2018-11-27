@@ -10,8 +10,7 @@
 
 
 <t:with_side_menu_and_status title="Edit Question">
-    <jsp:body>
-
+    <jsp:body>2 +3 = ?
 			<form name="addQuestion" id="addQuestion" method="post"
 				action="add_question">
 

@@ -19,6 +19,6 @@ public class EditQuestionSteps {
 
     @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
     public void descriptionに_が入力されている() {
-        assertTrue(driver.getBodyText().contains("\"2 +3 = ?\""));
+        assertTrue(driver.getBodyText().contains("2 +3 = ?"));
     }
 }
