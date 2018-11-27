@@ -45,7 +45,7 @@
                                                 <span class="input-group-addon">
                                                 <input type="radio" id="option${i}" name="check" value="${i}" aria-label="Radio button for following text input">
                                                 </span>
-                                                <input type="text" id="option1_value" class="form-control" name="option${i}" aria-label="Text input with radio button" width="100%" maxlength="100" value="1">
+                                                <input type="text" id="option${i}_value" class="form-control" name="option${i}" aria-label="Text input with radio button" width="100%" maxlength="100" value="${i}">
                                               </div>
                                           <br>
                                         </c:forEach>
