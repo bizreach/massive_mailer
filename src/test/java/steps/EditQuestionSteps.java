@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
 
@@ -14,5 +15,10 @@ public class EditQuestionSteps {
     public void EditQuestion() {
         site.visit("onlinetest/edit_question.jsp");
         assertEquals(driver.getCurrentTitle(), "Edit Question");
+    }
+
+    @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
+    public void descriptionに_が入力されている() {
+        assertTrue(driver.getBodyText().contains("\"2 +3 = ?\""));
     }
 }

@@ -3,7 +3,7 @@ Feature:
 
   Background: Display Edit Question page
     Given ID2のEdit Questionを開いている
-
+    Then Descriptionに"2 +3 = ?"が表示される
   @now
   Scenario:
 
