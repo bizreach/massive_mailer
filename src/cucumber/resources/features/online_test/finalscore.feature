@@ -61,8 +61,6 @@ Feature:
       | scrum    | 2                   | 2               | 0                 | scrumをもっと勉強して |
       | TDD      | 1                   | 1               | 0                 | TDDをもっと勉強して   |
 
-
-  @now
   Scenario Outline: 2カテゴリーから出題される
     Given "<category1>" から <number_of_questions1> 題、"<category2>" から <number_of_questions2> 題出題される
     When  User answered wrong the <number_of_wrong> th question page
