@@ -4,6 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
+import org.openqa.selenium.By;
 
 import static org.junit.Assert.*;
 
@@ -17,8 +18,12 @@ public class EditQuestionSteps {
         assertEquals(driver.getCurrentTitle(), "Edit Question");
     }
 
+
     @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
     public void descriptionに_が入力されている() {
-        assertTrue(driver.getBodyText().contains("2 +3 = ?"));
+        boolean result = driver.findElements(By.id("description")).stream().anyMatch(el->
+           el.getAttribute("value").equals("2 +3 = ?")
+        );
+        assertTrue(result);
     }
 }
