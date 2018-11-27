@@ -2,7 +2,7 @@ Feature:
   Admin can edit questions
 
   Background: Display Edit Question page
-    Given Edit Questionを開いている
+    Given ID2のEdit Questionを開いている
     Then Descriptionに"2 +3 = ?"が表示される
     And option1に"1"が表示される
     And option2に"2"が表示される
