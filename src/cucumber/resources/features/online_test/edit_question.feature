@@ -2,7 +2,11 @@ Feature:
   Admin can edit questions
 
   Background: Display Edit Question page
-    Given ID2のEdit Questionを開いている
+
+
+  @now
+  Scenario:
+    Given QuestionのIDは2である
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面のoption1に"1"が表示される
     And Edit画面のoption2に"2"が表示される
@@ -13,9 +17,6 @@ Feature:
     And Edit画面のAdviceに"2 + 3 = 5です"が表示される
     And Edit画面にsaveボタンがある
     And Edit画面にcancelボタンがある
-
-  @now
-  Scenario:
 
 
 #    Then Descriptionに"2 +3 = ?"が表示される

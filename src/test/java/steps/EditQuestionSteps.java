@@ -13,7 +13,7 @@ public class EditQuestionSteps {
     private final MassiveMailerSite site = new MassiveMailerSite();
     private final WebDriverWrapper driver = site.getDriver();
 
-    @Given("^ID2のEdit Questionを開いている$")
+    @Given("^QuestionのIDは2である$")
     public void EditQuestion() {
         site.visit("onlinetest/edit_question.jsp");
         assertEquals(driver.getCurrentTitle(), "Edit Question");
