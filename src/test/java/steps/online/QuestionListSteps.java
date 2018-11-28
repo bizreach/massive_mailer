@@ -1,6 +1,5 @@
 package steps.online;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Given;
@@ -13,25 +12,19 @@ public class QuestionListSteps {
 
 
     @Given("^Questionに一件も登録されていない$")
-    public void questionに一件も登録されていない() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        // throw new PendingException();
+    public void Questionに一件も登録されていない() {
 
         // ０件なのであとでデータを消すとか処理が必要かも
 
     }
 
     @When("^左部のサイドバーのQuestionListをクリックしたとき$")
-    public void 左部のサイドバーのquestionlistをクリックしたとき() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        // throw new PendingException();
+    public void 左部のサイドバーのQuestionListをクリックしたとき() {
         site.visit("onlinetest/question_list.jsp");
     }
 
     @Then("^QuestonList画面にヘッダのみ表示される$")
-    public void questonlist画面にヘッダのみ表示される() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        // throw new PendingException();
+    public void QuestonList画面にヘッダのみ表示される() {
         driver.pageShouldContain("QuestionID Description Edit");
     }
 }
