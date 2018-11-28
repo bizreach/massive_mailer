@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -57,7 +57,7 @@
 										<div class="col-lg-1">Advice:</div>
 										<div class="col-lg-11">
 											<input type="text" class="form-control" name="advice"
-												id="advice" maxlength="500">
+												id="advice" maxlength="500" value="2 + 3 = 5です">
 										</div>
 									</div>
 									<br> <br>

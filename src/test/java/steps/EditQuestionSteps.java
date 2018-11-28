@@ -36,8 +36,7 @@ public class EditQuestionSteps {
     }
     @Then("^Edit画面のAdviceに\"2 \\+ 3 = 5です\"が表示される$")
     public void Edit画面のAdviceに_が表示される() {
-        boolean result = driver.findElements(By.id("advice")).stream().anyMatch(el->
-                el.getAttribute("value").equals("2 + 3 = 5です")
+        boolean result = driver.findElements(By.id("advice")).stream().anyMatch(el-> el.getAttribute("value").equals("2 + 3 = 5です")
         );
         assertTrue(result);
     }
