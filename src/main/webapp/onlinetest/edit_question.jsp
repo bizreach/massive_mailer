@@ -64,7 +64,7 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<button type="submit" class="btn btn-default" name="save-button"
-												id="save" value="add" >Add</button>
+												id="save-button" value="save" >Save</button>
 										</div>
 									</div>
 								</div>
