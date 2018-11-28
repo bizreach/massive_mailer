@@ -27,18 +27,10 @@ public class EditQuestionSteps {
         assertTrue(result);
     }
 
-    @Then("^Edit画面のoption1に\"1\"が表示される$")
-    public void Edit画面のoption1に_が表示される() {
-        boolean result = driver.findElements(By.id("option1_value")).stream().anyMatch(el->
-                el.getAttribute("value").equals("1")
-        );
-        assertTrue(result);
-    }
-
-    @Then("^Edit画面のoption2に\"2\"が表示される$")
-    public void Edit画面のoption2に_が表示される() {
-        boolean result = driver.findElements(By.id("option2_value")).stream().anyMatch(el->
-                el.getAttribute("value").equals("2")
+    @Then("^Edit画面のoption(\\d+)に\"(.+)\"が表示される$")
+    public void Edit画面のoption_に_が表示される(int i, String value) {
+        boolean result = driver.findElements(By.id("option" + i + "_value")).stream().anyMatch(el->
+            el.getAttribute("value").equals(value)
         );
         assertTrue(result);
     }

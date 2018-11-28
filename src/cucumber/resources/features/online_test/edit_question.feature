@@ -7,7 +7,6 @@ Feature:
     And Edit画面のoption1に"1"が表示される
     And Edit画面のoption2に"2"が表示される
 
-  @now
   Scenario:
 
 
