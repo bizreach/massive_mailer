@@ -21,23 +21,21 @@ public class EditQuestionSteps {
 
     @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
     public void descriptionに_が入力されている() {
-        boolean result = driver.findElements(By.id("description")).stream().anyMatch(el->
-           el.getAttribute("value").equals("2 +3 = ?")
-        );
+        boolean result = driver.findElements(By.id("description")).stream()
+            .anyMatch(el -> el.getAttribute("value").equals("2 +3 = ?"));
         assertTrue(result);
     }
 
     @Then("^Edit画面のoption(\\d+)に\"(.+)\"が表示される$")
     public void Edit画面のoption_に_が表示される(int i, String value) {
-        boolean result = driver.findElements(By.id("option" + i + "_value")).stream().anyMatch(el ->
-                el.getAttribute("value").equals(value)
-        );
+        boolean result = driver.findElements(By.id("option" + i + "_value")).stream()
+            .anyMatch(el -> el.getAttribute("value").equals(value));
         assertTrue(result);
     }
     @Then("^Edit画面のAdviceに\"2 \\+ 3 = 5です\"が表示される$")
     public void Edit画面のAdviceに_が表示される() {
-        boolean result = driver.findElements(By.id("advice")).stream().anyMatch(el-> el.getAttribute("value").equals("2 + 3 = 5です")
-        );
+        boolean result = driver.findElements(By.id("advice")).stream()
+            .anyMatch(el-> el.getAttribute("value").equals("2 + 3 = 5です"));
         assertTrue(result);
     }
 }

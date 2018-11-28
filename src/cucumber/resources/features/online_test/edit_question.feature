@@ -12,7 +12,6 @@ Feature:
     And Edit画面のoption6に"6"が表示される
     And Edit画面のAdviceに"2 + 3 = 5です"が表示される
 
-  @now
   Scenario:
 
 
