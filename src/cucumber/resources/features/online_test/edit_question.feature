@@ -18,6 +18,21 @@ Feature:
     And Edit画面にsaveボタンがある
     And Edit画面にcancelボタンがある
 
+  @developing
+  Scenario:
+    Given QuestionのIDは2である
+    Then Descriptionに"2 +3 = ?"が表示される
+    And Edit画面のoption1に"1"が表示される
+    And Edit画面のoption2に"2"が表示される
+    And Edit画面のoption3に"3"が表示される
+    And Edit画面のoption4に"4"が表示される
+    And Edit画面のoption5に"5"が表示される
+    And Edit画面のoption6に"6"が表示される
+    And Edit画面のAdviceに"2 + 3 = 5です"が表示される
+    And Edit画面にsaveボタンがある
+    And Edit画面にcancelボタンがある
+    When Edit画面のsaveボタンを押す
+    Then Edit画面に更新されましたというメッセージが表示される
 
 #    Then Descriptionに"2 +3 = ?"が表示される
 #   And option2に"2"が表示される

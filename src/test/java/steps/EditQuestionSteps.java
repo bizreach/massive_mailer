@@ -46,6 +46,17 @@ public class EditQuestionSteps {
         assertEquals(saveButton.getText().toLowerCase(), buttonName);
     }
 
+    @Then("^Edit画面のsaveボタンを押す$")
+    public void Edit画面のsaveボタンを押す() throws Throwable {
+        driver.clickById("save-button");
+    }
+
+    @Then("^Edit画面に更新されましたというメッセージが表示される$")
+    public void Edit画面に_というメッセージが表示される() throws Throwable {
+        WebElement receivedMessage = findElementById("receivedMessage");
+        assertEquals(receivedMessage.getText(), "更新されました");
+    }
+
     private WebElement findElementById(String id) {
         return driver.findElements(By.id(id)).stream()
                 .findFirst()

@@ -3,8 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-    String errorMessage = (String) request.getAttribute("errorMessage");
-    pageContext.setAttribute("errorMessage", errorMessage);
+    String receivedMessage = (String) request.getAttribute("receivedMessage");
+    pageContext.setAttribute("receivedMessage", receivedMessage);
 %>
 
 
