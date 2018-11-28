@@ -22,6 +22,7 @@
                                 <tr>
                                     <th>QuestionID</th>
                                     <th>Description</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody id="questionTable">
