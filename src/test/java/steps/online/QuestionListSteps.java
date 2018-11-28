@@ -32,7 +32,6 @@ public class QuestionListSteps {
     public void questonlist画面にヘッダのみ表示される() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         // throw new PendingException();
-        driver.pageShouldContain("Description");
-        driver.pageShouldContain("QuestionID");
+        driver.pageShouldContain("QuestionID Description Edit");
     }
 }
