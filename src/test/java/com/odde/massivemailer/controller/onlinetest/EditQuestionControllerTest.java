@@ -23,6 +23,6 @@ public class EditQuestionControllerTest {
 
     @Test
     public void doPostEditQuestion() throws Exception {
-
+        controller.doGet(request, response);
     }
 }
