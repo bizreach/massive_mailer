@@ -37,22 +37,13 @@ public class EditQuestionSteps {
         assertEquals(advice.getAttribute("value"), "2 + 3 = 5です");
     }
 
-    @Then("^Edit画面にsaveボタンがある$")
-    public void Edit画面にsaveボタンがある() {
-        WebElement saveButton = findElementById("save-button");
+    @Then("^Edit画面に(.+)ボタンがある$")
+    public void Edit画面にボタンがある(String buttonName) {
+        WebElement saveButton = findElementById(buttonName + "-button");
 
-        assertEquals(saveButton.getAttribute("name"), "save-button");
-        assertEquals(saveButton.getAttribute("value"), "save");
-        assertEquals(saveButton.getText(), "Save");
-    }
-
-    @Then("^Edit画面にcancelボタンがある$")
-    public void Edit画面にcancelボタンがある() {
-        WebElement cancelButton = findElementById("cancel-button");
-
-        assertEquals(cancelButton.getAttribute("name"), "cancel-button");
-        assertEquals(cancelButton.getAttribute("value"), "cancel");
-        assertEquals(cancelButton.getText(), "Cancel");
+        assertEquals(saveButton.getAttribute("name"), buttonName + "-button");
+        assertEquals(saveButton.getAttribute("value"), buttonName);
+        assertEquals(saveButton.getText().toLowerCase(), buttonName);
     }
 
     private WebElement findElementById(String id) {
