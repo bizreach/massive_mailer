@@ -22,6 +22,10 @@
                                     <th>Question 1</th>
                                 </thead>
                                 <tbody id="questionTable">
+                                <tr>
+                                    <th>QuestionID</th>
+                                    <td id="question_id">hogefuga</td>
+                                </tr>
                                     <tr>
                                         <th>Description</th>
                                         <td id="description">what is 1+1?</td>
