@@ -41,11 +41,19 @@ public class EditQuestionSteps {
 
     @Then("^Edit画面にsaveボタンがある$")
     public void Edit画面にsaveボタンがある() {
-        boolean result = !driver.findElements(By.id("save")).isEmpty();
+        boolean result = !driver.findElements(By.id("save-button")).isEmpty();
         assertTrue(result);
 
-        result = driver.findElements(By.id("save")).stream()
+        result = driver.findElements(By.id("save-button")).stream()
                 .anyMatch(el-> el.getAttribute("name").equals("save-button"));
+        assertTrue(result);
+
+        result = driver.findElements(By.id("save-button")).stream()
+                .anyMatch(el-> el.getAttribute("value").equals("save"));
+        assertTrue(result);
+        
+        result = driver.findElements(By.id("save-button")).stream()
+                .anyMatch(el-> el.getText().equals("Save"));
         assertTrue(result);
     }
 }
