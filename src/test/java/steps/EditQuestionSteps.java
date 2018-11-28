@@ -43,5 +43,9 @@ public class EditQuestionSteps {
     public void Edit画面にsaveボタンがある() {
         boolean result = !driver.findElements(By.id("save")).isEmpty();
         assertTrue(result);
+
+        result = driver.findElements(By.id("save")).stream()
+                .anyMatch(el-> el.getAttribute("name").equals("save-button"));
+        assertTrue(result);
     }
 }
