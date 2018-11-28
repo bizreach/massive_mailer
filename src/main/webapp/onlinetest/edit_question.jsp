@@ -62,7 +62,11 @@
 									</div>
 									<br> <br>
 									<div class="row">
-										<div class="col-lg-12">
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-default" name="cancel-button"
+                                                    id="cancel-button" value="cancel" >Cancel</button>
+                                        </div>
+										<div class="col-lg-6">
 											<button type="submit" class="btn btn-default" name="save-button"
 												id="save-button" value="save" >Save</button>
 										</div>
