@@ -6,7 +6,12 @@ Feature:
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面のoption1に"1"が表示される
     And Edit画面のoption2に"2"が表示される
+    And Edit画面のoption3に"3"が表示される
+    And Edit画面のoption4に"4"が表示される
+    And Edit画面のoption5に"5"が表示される
+    And Edit画面のoption6に"6"が表示される
 
+  @now
   Scenario:
 
 
