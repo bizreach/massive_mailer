@@ -1,5 +1,7 @@
 package steps.online;
 
+import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -7,9 +9,12 @@ import cucumber.api.java.en.When;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
 
+import java.util.Map;
+
 public class QuestionListSteps {
     private final MassiveMailerSite site = new MassiveMailerSite();
     private final WebDriverWrapper driver = site.getDriver();
+    private DataTable questionDataTable;
 
 
     @Given("^Questionに一件も登録されていない$")
@@ -30,14 +35,17 @@ public class QuestionListSteps {
         driver.pageShouldContain("QuestionID Description Edit");
     }
 
-
-    @Given("^Questionが(\\d+)件登録されている、(\\d+)件目に「Scrumの用語はどれか」というDescriptionで登録する$")
-    public void questionが件登録されている件目にScrumの用語はどれかというDescriptionで登録する(int arg0, int arg1) {
+    @Given("^Questionが(\\d+)件登録されている、(\\d+)件目に「Scrumの用語はどれか？」というDescriptionで登録する$")
+    public void questionが_件登録されている_件目に_Scrumの用語はどれか_というDescriptionで登録する(int arg1, int arg2, DataTable arg3) throws Throwable {
+        questionDataTable = arg3;
     }
 
     @Then("^(\\d+)件目のQuestionIDが\"([^\"]*)\"と表示しされている事$")
     public void 件目のquestionidがと表示しされている事(int arg0, String arg1) {
-        driver.pageShouldContain("1 Scrumの用語はどれか？ Edit");
+        System.out.println(questionDataTable);
+        String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
+        Map.Entry<String, String> questionIdDescriptionEntry = questionDataTable.asMap(String.class, String.class).entrySet().stream().findFirst().orElseThrow(PendingException::new);
+        driver.pageShouldContain(questionIdDescriptionEntry.getKey()+ " " + questionIdDescriptionEntry.getValue() + " Edit");
     }
 
     @And("^QuestionListが(\\d+)件表示され、Questionが(\\d+)行ずつ図のように表示される$")
