@@ -29,8 +29,15 @@ public class EditQuestionSteps {
 
     @Then("^Edit画面のoption(\\d+)に\"(.+)\"が表示される$")
     public void Edit画面のoption_に_が表示される(int i, String value) {
-        boolean result = driver.findElements(By.id("option" + i + "_value")).stream().anyMatch(el->
-            el.getAttribute("value").equals(value)
+        boolean result = driver.findElements(By.id("option" + i + "_value")).stream().anyMatch(el ->
+                el.getAttribute("value").equals(value)
+        );
+        assertTrue(result);
+    }
+    @Then("^Edit画面のAdviceに\"2 \\+ 3 = 5です\"が表示される$")
+    public void Edit画面のAdviceに_が表示される() {
+        boolean result = driver.findElements(By.id("advice")).stream().anyMatch(el->
+                el.getAttribute("value").equals("2 + 3 = 5です")
         );
         assertTrue(result);
     }

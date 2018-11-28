@@ -10,7 +10,7 @@ Feature:
     And Edit画面のoption4に"4"が表示される
     And Edit画面のoption5に"5"が表示される
     And Edit画面のoption6に"6"が表示される
-    And Edit画面のAdiviceに"2 + 3 = 5です"が表示される
+    And Edit画面のAdviceに"2 + 3 = 5です"が表示される
 
   @now
   Scenario:
