@@ -22,32 +22,33 @@ public class EditQuestionSteps {
 
     @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
     public void descriptionに_が入力されている() {
-        boolean result = driver.findElements(By.id("description")).stream()
-            .anyMatch(el -> el.getAttribute("value").equals("2 +3 = ?"));
-        assertTrue(result);
+        WebElement description = findElementById("description");
+        assertEquals(description.getAttribute("value"), "2 +3 = ?");
     }
 
     @Then("^Edit画面のoption(\\d+)に\"(.+)\"が表示される$")
     public void Edit画面のoption_に_が表示される(int i, String value) {
-        boolean result = driver.findElements(By.id("option" + i + "_value")).stream()
-            .anyMatch(el -> el.getAttribute("value").equals(value));
-        assertTrue(result);
+        WebElement option = findElementById("option" + i + "_value");
+        assertEquals(option.getAttribute("value"), value);
     }
     @Then("^Edit画面のAdviceに\"2 \\+ 3 = 5です\"が表示される$")
     public void Edit画面のAdviceに_が表示される() {
-        boolean result = driver.findElements(By.id("advice")).stream()
-            .anyMatch(el-> el.getAttribute("value").equals("2 + 3 = 5です"));
-        assertTrue(result);
+        WebElement advice = findElementById("advice");
+        assertEquals(advice.getAttribute("value"), "2 + 3 = 5です");
     }
 
     @Then("^Edit画面にsaveボタンがある$")
     public void Edit画面にsaveボタンがある() {
-        WebElement saveButton = driver.findElements(By.id("save-button")).stream()
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("saveボタンが存在しませんでした"));
+        WebElement saveButton = findElementById("save-button");
 
         assertEquals(saveButton.getAttribute("name"), "save-button");
         assertEquals(saveButton.getAttribute("value"), "save");
         assertEquals(saveButton.getText(), "Save");
+    }
+
+    private WebElement findElementById(String id) {
+        return driver.findElements(By.id(id)).stream()
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("#" + id + "に対応するコンポーネントがありませんでした"));
     }
 }
