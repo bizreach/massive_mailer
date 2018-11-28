@@ -38,4 +38,10 @@ public class EditQuestionSteps {
             .anyMatch(el-> el.getAttribute("value").equals("2 + 3 = 5です"));
         assertTrue(result);
     }
+
+    @Then("^Edit画面にsaveボタンがある$")
+    public void Edit画面にsaveボタンがある() {
+        boolean result = !driver.findElements(By.id("save")).isEmpty();
+        assertTrue(result);
+    }
 }
