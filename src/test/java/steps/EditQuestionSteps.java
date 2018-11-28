@@ -46,6 +46,15 @@ public class EditQuestionSteps {
         assertEquals(saveButton.getText(), "Save");
     }
 
+    @Then("^Edit画面にcancelボタンがある$")
+    public void Edit画面にcancelボタンがある() {
+        WebElement cancelButton = findElementById("cancel-button");
+
+        assertEquals(cancelButton.getAttribute("name"), "cancel-button");
+        assertEquals(cancelButton.getAttribute("value"), "cancel");
+        assertEquals(cancelButton.getText(), "Cancel");
+    }
+
     private WebElement findElementById(String id) {
         return driver.findElements(By.id(id)).stream()
                 .findFirst()
