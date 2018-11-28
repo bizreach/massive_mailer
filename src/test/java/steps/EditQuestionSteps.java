@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.openqa.selenium.WebElement;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
 import org.openqa.selenium.By;
@@ -41,19 +42,12 @@ public class EditQuestionSteps {
 
     @Then("^Edit画面にsaveボタンがある$")
     public void Edit画面にsaveボタンがある() {
-        boolean result = !driver.findElements(By.id("save-button")).isEmpty();
-        assertTrue(result);
+        WebElement saveButton = driver.findElements(By.id("save-button")).stream()
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("saveボタンが存在しませんでした"));
 
-        result = driver.findElements(By.id("save-button")).stream()
-                .anyMatch(el-> el.getAttribute("name").equals("save-button"));
-        assertTrue(result);
-
-        result = driver.findElements(By.id("save-button")).stream()
-                .anyMatch(el-> el.getAttribute("value").equals("save"));
-        assertTrue(result);
-        
-        result = driver.findElements(By.id("save-button")).stream()
-                .anyMatch(el-> el.getText().equals("Save"));
-        assertTrue(result);
+        assertEquals(saveButton.getAttribute("name"), "save-button");
+        assertEquals(saveButton.getAttribute("value"), "save");
+        assertEquals(saveButton.getText(), "Save");
     }
 }
