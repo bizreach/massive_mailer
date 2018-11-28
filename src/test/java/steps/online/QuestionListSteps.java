@@ -37,7 +37,7 @@ public class QuestionListSteps {
 
     @Then("^(\\d+)件目のQuestionIDが\"([^\"]*)\"と表示しされている事$")
     public void 件目のquestionidがと表示しされている事(int arg0, String arg1) {
-        driver.pageShouldContain("1 スクラム用語はどれか Edit");
+        driver.pageShouldContain("1 Scrumの用語はどれか？ Edit");
     }
 
     @And("^QuestionListが(\\d+)件表示され、Questionが(\\d+)行ずつ図のように表示される$")

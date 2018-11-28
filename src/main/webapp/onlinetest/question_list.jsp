@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:with_side_menu title="Question List">
@@ -27,6 +27,9 @@
                                 </thead>
                                 <tbody id="questionTable">
                                 <tr>
+									<td>1</td>
+									<td>Scrumの用語はどれか？</td>
+									<td><button>Edit</button></td>
                                 </tr>
                                 </tbody>
                             </table>
