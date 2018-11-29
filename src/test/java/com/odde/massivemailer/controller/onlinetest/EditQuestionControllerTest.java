@@ -1,6 +1,7 @@
 package com.odde.massivemailer.controller.onlinetest;
 
 import com.odde.TestWithDB;
+import com.odde.massivemailer.model.onlinetest.Question;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,8 +33,10 @@ public class EditQuestionControllerTest {
         final int expectedHttpStatus = 200;
         final String forwardedUrl = "/onlinetest/edit_question.jsp";
 
-        final int questionId = 2;
-        final String description = "2 +3 = ?";
+        // 編集ページの仕様に関するもの
+        Question question = addTestQuestion();
+        Long questionId = (Long) question.getId();
+
         final Map<String, String> testCases = new HashMap<String, String>() {
             {
                 put("option1", "1");
@@ -44,9 +47,7 @@ public class EditQuestionControllerTest {
                 put("option6", "6");
             }
         };
-        final String advice = "2 + 3 = 5です";
-
-        request.setParameter("questionId", String.valueOf(questionId));
+        request.setParameter("question_id", String.valueOf(questionId));
 
         // Act
         controller.doGet(request, response);
@@ -54,13 +55,13 @@ public class EditQuestionControllerTest {
         // Assert
         assertEquals(expectedHttpStatus, response.getStatus());
         assertEquals(forwardedUrl, response.getForwardedUrl());
-        assertEquals(description, request.getAttribute("description"));
+        assertEquals(question.getDescription(), request.getAttribute("description"));
 
         testCases.forEach((k, v) -> {
             assertEquals(v, request.getAttribute(k));
         });
 
-        assertEquals(advice, request.getAttribute("advice"));
+        assertEquals(question.getAdvice(), request.getAttribute("advice"));
     }
 
     @Test
@@ -73,5 +74,14 @@ public class EditQuestionControllerTest {
 
         // Assert
         assertEquals(redirectUrl, response.getRedirectedUrl());
+    }
+
+    private Question addTestQuestion() {
+        Question question = new Question();
+        question.set("description", "Choose Scrum's word.");
+        question.set("advice", "Read Scrum Guide");
+        question.set("category", "test");
+        question.saveIt();
+        return question;
     }
 }
