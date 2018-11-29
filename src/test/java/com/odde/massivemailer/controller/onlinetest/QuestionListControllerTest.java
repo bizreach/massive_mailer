@@ -2,12 +2,15 @@ package com.odde.massivemailer.controller.onlinetest;
 
 import com.odde.TestWithDB;
 import com.odde.massivemailer.model.onlinetest.Question;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import javax.servlet.ServletException;
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -20,11 +23,18 @@ public class QuestionListControllerTest {
     private final MockHttpServletRequest request = new MockHttpServletRequest();
     private final MockHttpServletResponse response = new MockHttpServletResponse();
 
-    @BeforeClass
-    public static void prepareTestData() {
+    @Before
+    public void prepareTestData() {
         for (int i = 0; i < 10; i++) {
             Question.createIt("description", "Scrumの用語はどれか？");
         }
+    }
+
+    @Test
+    public void doGetRequest() throws ServletException, IOException {
+        controller.doGet(request, response);
+        String forwardedUrl = response.getForwardedUrl();
+        assertEquals("/onlinetest/question_list.jsp", forwardedUrl);
     }
 
     @Test
@@ -43,4 +53,5 @@ public class QuestionListControllerTest {
         long questionCount = questions.size();
         assertEquals((long) Question.count(), questionCount);
     }
+
 }
