@@ -23,7 +23,7 @@ public class EditQuestionSteps {
     public void Edit画面に更新用formが表示される() {
         WebElement description = findElementById("editQuestion");
         assertEquals("editQuestion", description.getAttribute("name"));
-        assertEquals("edit_question", description.getAttribute("action"));
+        assertEquals("http://localhost:8060/onlinetest/edit_question", description.getAttribute("action"));
         assertEquals("post", description.getAttribute("method"));
     }
 

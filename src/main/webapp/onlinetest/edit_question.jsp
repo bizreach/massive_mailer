@@ -11,8 +11,8 @@
 
 <t:with_side_menu_and_status title="Edit Question">
     <jsp:body>
-			<form name="addQuestion" id="addQuestion" method="post"
-				action="add_question">
+			<form name="editQuestion" id="editQuestion" method="post"
+				action="edit_question">
 
 					<div class="row">
 						<div class="col-lg-12">

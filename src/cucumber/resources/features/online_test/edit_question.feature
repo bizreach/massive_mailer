@@ -4,7 +4,6 @@ Feature:
   Background: Display Edit Question page
 
 
-  @now
   Scenario:
     Given QuestionのIDは2である
     Then Descriptionに"2 +3 = ?"が表示される
