@@ -66,7 +66,8 @@ public class EditQuestionControllerTest {
         final String testDescription = "Choose Scrum's word.";
         final String testAdvice = "Read Scrum Guide";
 
-        Question question = addTestQuestion();
+        QuestionAndOption questionAndOption = addTestQuestion();
+        Question question = questionAndOption.getQuestion();
 
         request.addParameter("questionId", String.valueOf(question.getId()));
         request.addParameter("description", testDescription);
