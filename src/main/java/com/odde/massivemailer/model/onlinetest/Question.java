@@ -35,7 +35,7 @@ public class Question extends ApplicationModel {
         return ids.stream().map(Model::getLongId);
     }
 
-    static Question getById(Long questionId) {
+    public static Question getById(Long questionId) {
         LazyList<Question> question = where("id = ?", questionId);
         return question.stream().findFirst().orElseThrow(() -> new IllegalArgumentException("No question found by given id."));
     }
