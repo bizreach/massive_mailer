@@ -93,4 +93,23 @@ public class QuestionListSteps {
         }
 
     }
+
+    @Given("^QuestionListが開かれ、Questionが登録されている$")
+    public void questionlistが開かれ_Questionが登録されている() {
+
+        site.visit("onlinetest/question_list.jsp");
+
+        // ここでデータのDelete-Insertが必要かも
+    }
+
+    @When("^Question(\\d+)のレコードの「Edit」ボタンを押した時$")
+    public void question_のレコードの_Edit_ボタンを押した時(int arg1) {
+        driver.clickButton(String.valueOf(arg1));
+    }
+
+    @Then("^Question(\\d+)の編集画面に遷移する$")
+    public void question_の編集画面に遷移する(int arg1) {
+        String expect = "http://localhost:8070/onlinetest/questions/2";
+        driver.expectRedirect(expect);
+    }
 }

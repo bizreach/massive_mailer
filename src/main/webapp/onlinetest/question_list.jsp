@@ -34,7 +34,7 @@
 								<tr>
 									<td>2</td>
 									<td>あ</td>
-									<td><button>Edit</button></td>
+									<td><button id="2">Edit</button></td>
 								</tr>
 								<tr>
 									<td>3</td>
