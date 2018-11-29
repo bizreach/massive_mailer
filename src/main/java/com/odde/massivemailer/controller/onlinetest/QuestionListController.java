@@ -11,7 +11,7 @@ import java.util.List;
 public class QuestionListController extends AppController {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        List<Question> questions = Question.getNRandom(1);
+        List<Question> questions = Question.findAll();
         request.setAttribute("questions", questions);
     }
 }
