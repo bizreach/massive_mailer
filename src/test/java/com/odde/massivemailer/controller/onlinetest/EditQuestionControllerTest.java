@@ -48,6 +48,13 @@ public class EditQuestionControllerTest {
 
     @Test
     public void doPostEditQuestion() throws Exception{
+        // Arrange
+        final String redirectUrl = "/onlinetest/question_list.jsp";
+
+        // Act
         controller.doPost(request, response);
+
+        // Assert
+        assertEquals(redirectUrl, response.getRedirectedUrl());
     }
 }
