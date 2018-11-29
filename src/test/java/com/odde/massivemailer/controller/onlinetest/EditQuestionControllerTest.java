@@ -31,6 +31,8 @@ public class EditQuestionControllerTest {
 
         final int questionId = 2;
         final String description = "2 +3 = ?";
+        final String option1 = "1";
+        final String option2 = "2";
         request.setParameter("questionId", String.valueOf(questionId));
 
         // Act
@@ -40,5 +42,7 @@ public class EditQuestionControllerTest {
         assertEquals(expectedHttpStatus, response.getStatus());
         assertEquals(forwardedUrl, response.getForwardedUrl());
         assertEquals(description, request.getAttribute("description"));
+        assertEquals(option1, request.getAttribute("option1"));
+        assertEquals(option2, request.getAttribute("option2"));
     }
 }
