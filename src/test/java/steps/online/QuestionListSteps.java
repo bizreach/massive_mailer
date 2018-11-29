@@ -71,13 +71,26 @@ public class QuestionListSteps {
 
             // Edit 列を取得
             String actual = tds.get(2).getText();
-
             assertEquals(expect,actual);
         }
     }
+    @And("^QuestionListの一覧は、QuestionID昇順で表示される事$")
+    public void questionlistの一覧はQuestionID昇順で表示される事() {
 
-    @And("^QuestionListの一番上にはQuestionIDの昇順で表示される事$")
-    public void questionlistの一番上にはquestionidの昇順で表示される事() {
+        // table class: table table-responsive table-bordered を取得
+        WebElement questionTable = driver.findElement("questionTable");
+        List<WebElement> trs = questionTable.findElements(By.tagName("tr"));
+
+        // forとかで Edit文字があることをチェック
+        for (int i=0; trs.size() > i; i++) {
+            List<WebElement> tds = trs.get(i).findElements(By.tagName("td"));
+
+            String expect = String.valueOf(i+1);
+
+            // Edit 列を取得
+            String actual = tds.get(0).getText();
+            assertEquals(expect,actual);
+        }
+
     }
-
 }

@@ -23,5 +23,5 @@ Feature: Question List
     Then 1件目のQuestionのQuestionIDが"1"、Descriptionに"Scrumの用語はどれか？"と表示されている事
     And QuestionListが10件表示され、Questionが1行ずつ図のように表示される
     And 「Edit」というキャプションのボタンが1件毎に表示される事
-    And QuestionListの一番上にはQuestionIDの昇順で表示される事
+    And QuestionListの一覧は、QuestionID昇順で表示される事
 
