@@ -47,7 +47,7 @@ public class QuestionListControllerTest {
     }
 
     @Test
-    public void doGetQuestions() {
+    public void doGetQuestions() throws ServletException, IOException {
         controller.doGet(request, response);
         List<Question> questions = (List<Question>) request.getAttribute("questions");
         long questionCount = questions.size();
