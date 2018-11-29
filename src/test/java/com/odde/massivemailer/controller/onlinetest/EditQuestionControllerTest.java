@@ -77,6 +77,6 @@ public class EditQuestionControllerTest {
 
     @Test
     public void parseParamsEditQuestion()throws Exception {
-        controller.parseParams();
+        controller.parseParams(request);
     }
 }
