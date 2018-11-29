@@ -20,4 +20,8 @@ public class EditQuestionController extends AppController {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/onlinetest/edit_question.jsp");
         dispatcher.forward(request, response);
     }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 }
