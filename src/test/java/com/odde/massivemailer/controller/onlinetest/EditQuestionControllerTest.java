@@ -74,4 +74,9 @@ public class EditQuestionControllerTest {
         // Assert
         assertEquals(redirectUrl, response.getRedirectedUrl());
     }
+
+    @Test
+    public void parseParamsEditQuestion()throws Exception {
+        controller.parseParams();
+    }
 }
