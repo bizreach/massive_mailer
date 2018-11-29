@@ -10,15 +10,15 @@ Feature: Question List
   Scenario: クエスチョンがある時の一覧の表示
     Given Questionが10件登録されている、1件目に「Scrumの用語はどれか？」というDescriptionで登録する
       | 1 | Scrumの用語はどれか？  |
-      | 2 | Scrumの用語はどれか？  |
-#      | 3 Scrumの用語はどれか？  |
-#      | 4 Scrumの用語はどれか？  |
-#      | 5 Scrumの用語はどれか？  |
-#      | 6 Scrumの用語はどれか？  |
-#      | 7 Scrumの用語はどれか？  |
-#      | 8 Scrumの用語はどれか？  |
-#      | 9 Scrumの用語はどれか？  |
-#      | 10 Scrumの用語はどれか？ |
+      | 2 | あ  |
+      | 3 | い  |
+      | 4 | う  |
+      | 5 | え  |
+      | 6 | お  |
+      | 7 | か  |
+      | 8 | き  |
+      | 9 | く  |
+      | 10 | け |
     When 左部のサイドバーのQuestionListをクリックしたとき
     Then 1件目のQuestionIDが"1"と表示しされている事
     And QuestionListが10件表示され、Questionが1行ずつ図のように表示される
