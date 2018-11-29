@@ -19,6 +19,13 @@ public class EditQuestionSteps {
         assertEquals(driver.getCurrentTitle(), "Edit Question");
     }
 
+    @Then("^Edit画面に更新用formが表示される")
+    public void Edit画面に更新用formが表示される() {
+        WebElement description = findElementById("editQuestion");
+        assertEquals("editQuestion", description.getAttribute("name"));
+        assertEquals("edit_question", description.getAttribute("action"));
+        assertEquals("post", description.getAttribute("method"));
+    }
 
     @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
     public void descriptionに_が入力されている() {
