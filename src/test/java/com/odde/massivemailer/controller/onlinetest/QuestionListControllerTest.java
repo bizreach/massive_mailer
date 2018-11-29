@@ -10,7 +10,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(TestWithDB.class)
 public class QuestionListControllerTest {
@@ -22,6 +22,15 @@ public class QuestionListControllerTest {
     @Before
     public void prepareTestData() {
         Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
+        Question.createIt("description", "Scrumの用語はどれか？");
     }
 
     @Test
@@ -31,5 +40,13 @@ public class QuestionListControllerTest {
         Question anyQuestion = questions.stream().findFirst().orElseThrow(Exception::new);
         assertNotNull(anyQuestion.getId());
         assertNotNull(anyQuestion.getDescription());
+    }
+
+    @Test
+    public void doGetQuestionAll() throws Exception {
+        controller.doGet(request, response);
+        List<Question> questions = (List<Question>) request.getAttribute("questions");
+        long questionCount = questions.size();
+        assertEquals((long) Question.count(), questionCount);
     }
 }
