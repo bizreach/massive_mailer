@@ -38,8 +38,8 @@ public class EditQuestionController extends AppController {
 }
 
 class EditQuestionParams{
-    public String description;
     public Long questionId;
+    public String description;
     public List<Long> options;
     public String advice;
 
