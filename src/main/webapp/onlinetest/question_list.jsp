@@ -14,27 +14,28 @@
 				</div>
 				<!-- /.row -->
 
-				<input type="hidden" id="msg_sent_cnt" value="${param.repcnt}" />
+				<form method="get" action="edit_question?question_id=2">
+					<input type="hidden" id="msg_sent_cnt" value="${param.repcnt}" />
 					<div class="col-lg-12" id="questionTables">
 						<div class="panel panel-default">
-                            <table class="table table-responsive table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>QuestionID</th>
-                                    <th>Description</th>
-                                    <th>Edit</th>
-                                </tr>
-                                </thead>
-                                <tbody id="questionTable">
-                                <tr>
+							<table class="table table-responsive table-bordered">
+								<thead>
+								<tr>
+									<th>QuestionID</th>
+									<th>Description</th>
+									<th>Edit</th>
+								</tr>
+								</thead>
+								<tbody id="questionTable">
+								<tr>
 									<td>1</td>
 									<td>Scrumの用語はどれか？</td>
 									<td><button>Edit</button></td>
-                                </tr>
+								</tr>
 								<tr>
 									<td>2</td>
 									<td>あ</td>
-									<td><button id="2">Edit</button></td>
+									<td><button>Edit</button></td>
 								</tr>
 								<tr>
 									<td>3</td>
@@ -76,10 +77,11 @@
 									<td>け</td>
 									<td><button>Edit</button></td>
 								</tr>
-                                </tbody>
-                            </table>
+								</tbody>
+							</table>
 						</div>
 					</div>
+				</form>
 
 			<div class="modal fade" id="editContactModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">

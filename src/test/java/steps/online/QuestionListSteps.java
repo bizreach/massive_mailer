@@ -104,12 +104,18 @@ public class QuestionListSteps {
 
     @When("^Question(\\d+)のレコードの「Edit」ボタンを押した時$")
     public void question_のレコードの_Edit_ボタンを押した時(int arg1) {
-        driver.clickButton(String.valueOf(arg1));
+        // table class: table table-responsive table-bordered を取得
+        WebElement questionTable = driver.findElement("questionTable");
+        List<WebElement> trs = questionTable.findElements(By.tagName("tr"));
+        List<WebElement> tds = trs.get(arg1 - 1).findElements(By.tagName("td"));
+
+        // Edit をクリック
+        tds.get(2).click();
     }
 
     @Then("^Question(\\d+)の編集画面に遷移する$")
     public void question_の編集画面に遷移する(int arg1) {
-        String expect = "http://localhost:8070/onlinetest/questions/2";
+        String expect = site.baseUrl() + "/onlinetest/edit_question?question_id=2?";
         driver.expectRedirect(expect);
     }
 }
