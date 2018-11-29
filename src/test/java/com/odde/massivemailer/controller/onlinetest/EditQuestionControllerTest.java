@@ -63,11 +63,25 @@ public class EditQuestionControllerTest {
         // Arrange
         final String redirectUrl = "/onlinetest/question_list.jsp";
 
+        final String testDescription = "Choose Scrum's word.";
+        final String testAdvice = "Read Scrum Guide";
+
+        Question question = addTestQuestion();
+
+        request.addParameter("questionId", String.valueOf(question.getId()));
+        request.addParameter("description", testDescription);
+        request.addParameter("advice", testAdvice);
+
         // Act
         controller.doPost(request, response);
 
         // Assert
         assertEquals(redirectUrl, response.getRedirectedUrl());
+
+        Question editedQuestion = Question.getById((Long) question.getId());
+        assertEquals(question.getId(), Long.valueOf((Integer) editedQuestion.getId()));
+        assertEquals(editedQuestion.getDescription(), testDescription);
+        assertEquals(editedQuestion.getAdvice(), testAdvice);
     }
 
     private QuestionAndOption addTestQuestion() {
