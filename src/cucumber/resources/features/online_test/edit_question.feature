@@ -3,7 +3,6 @@ Feature:
 
   Background: Display Edit Question page
 
-
   Scenario:
     Given QuestionのIDは2である
     Then Descriptionに"2 +3 = ?"が表示される
@@ -31,6 +30,7 @@ Feature:
     And Edit画面のAdviceに"2 + 3 = 5です"が表示される
     And Edit画面にsaveボタンがある
     And Edit画面にcancelボタンがある
+    When Edit画面でoption5を回答として選択する
     When Edit画面のsaveボタンを押す
     Then Edit画面に更新されましたというメッセージが表示される
 

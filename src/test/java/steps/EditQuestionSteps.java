@@ -38,6 +38,12 @@ public class EditQuestionSteps {
         WebElement option = findElementById("option" + i + "_value");
         assertEquals(option.getAttribute("value"), value);
     }
+
+    @Then("^Edit画面でoption5を回答として選択する$")
+    public void Edit画面でoption_を回答として選択する() {
+        driver.clickById("option5");
+    }
+
     @Then("^Edit画面のAdviceに\"2 \\+ 3 = 5です\"が表示される$")
     public void Edit画面のAdviceに_が表示される() {
         WebElement advice = findElementById("advice");
