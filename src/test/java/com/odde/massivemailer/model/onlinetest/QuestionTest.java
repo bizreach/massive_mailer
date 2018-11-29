@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -18,6 +19,15 @@ import static junit.framework.TestCase.assertFalse;
 
 @RunWith(TestWithDB.class)
 public class QuestionTest {
+
+    @Test
+    public void setAndGetDescription() {
+        final String description = "nekokoneko";
+        Question question = new Question();
+        question.setDescription(description);
+
+        assertEquals(description, question.getDescription());
+    }
 
     @Test
     public void shouldReturnAListOfIds() {
