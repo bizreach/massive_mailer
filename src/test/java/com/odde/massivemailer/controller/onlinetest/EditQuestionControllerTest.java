@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 @RunWith(TestWithDB.class)
@@ -31,8 +34,13 @@ public class EditQuestionControllerTest {
 
         final int questionId = 2;
         final String description = "2 +3 = ?";
-        final String option1 = "1";
-        final String option2 = "2";
+        final Map<String, String> testCases = new HashMap<String, String>() {
+            {
+                put("option1", "1");
+                put("option2", "2");
+            }
+        };
+
         request.setParameter("questionId", String.valueOf(questionId));
 
         // Act
@@ -42,8 +50,10 @@ public class EditQuestionControllerTest {
         assertEquals(expectedHttpStatus, response.getStatus());
         assertEquals(forwardedUrl, response.getForwardedUrl());
         assertEquals(description, request.getAttribute("description"));
-        assertEquals(option1, request.getAttribute("option1"));
-        assertEquals(option2, request.getAttribute("option2"));
+
+        testCases.forEach((k, v) -> {
+            assertEquals(v, request.getAttribute(k));
+        });
     }
 
     @Test
