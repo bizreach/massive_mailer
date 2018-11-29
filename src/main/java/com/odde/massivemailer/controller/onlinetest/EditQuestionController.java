@@ -17,6 +17,10 @@ public class EditQuestionController extends AppController {
         request.setAttribute("description", "2 +3 = ?");
         request.setAttribute("option1", "1");
         request.setAttribute("option2", "2");
+        request.setAttribute("option3", "3");
+        request.setAttribute("option4", "4");
+        request.setAttribute("option5", "5");
+        request.setAttribute("option6", "6");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/onlinetest/edit_question.jsp");
         dispatcher.forward(request, response);
     }
