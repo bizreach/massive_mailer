@@ -23,5 +23,6 @@ public class EditQuestionController extends AppController {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("/onlinetest/question_list.jsp");
     }
 }
