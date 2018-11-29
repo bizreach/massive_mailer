@@ -205,5 +205,10 @@ public class WebDriverWrapper {
     public WebDriver.Navigation getNavigate() {
         return this.driver.navigate();
     }
+
+    // findElementByIdだと、UIElementという独自型なので、機能が不足している為、WebElementを返すメソッドを作成
+    public WebElement findElement(String id) {
+        return driver.findElement(By.id(id));
+    }
 }
 

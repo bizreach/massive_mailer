@@ -1,15 +1,18 @@
 package steps.online;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
 
-import java.util.Map;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class QuestionListSteps {
     private final MassiveMailerSite site = new MassiveMailerSite();
@@ -55,6 +58,22 @@ public class QuestionListSteps {
 
     @And("^「Edit」というキャプションのボタンが(\\d+)件毎に表示される事$")
     public void editというキャプションのボタンが件毎に表示される事(int arg0) {
+
+        // table class: table table-responsive table-bordered を取得
+        WebElement questionTable = driver.findElement("questionTable");
+        List<WebElement> trs = questionTable.findElements(By.tagName("tr"));
+
+        // forとかで Edit文字があることをチェック
+        for (WebElement tr: trs) {
+            List<WebElement> tds = tr.findElements(By.tagName("td"));
+
+            String expect = "Edit";
+
+            // Edit 列を取得
+            String actual = tds.get(2).getText();
+
+            assertEquals(expect,actual);
+        }
     }
 
     @And("^QuestionListの一番上にはQuestionIDの昇順で表示される事$")
