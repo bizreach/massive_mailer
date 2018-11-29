@@ -5,6 +5,8 @@
 <%
     String receivedMessage = (String) request.getAttribute("receivedMessage");
     pageContext.setAttribute("receivedMessage", receivedMessage);
+
+	String description = (String) request.getAttribute("description");
 %>
 
 
