@@ -44,6 +44,8 @@ public class Question extends ApplicationModel {
         return findBySQL("SELECT id, description, advice, category FROM questions ORDER BY RAND() LIMIT ?", count);
     }
 
+    public void setDescription(String description) {set( DESCRIPTION, description); }
+
     public String getDescription() {
         return getString(DESCRIPTION);
     }
