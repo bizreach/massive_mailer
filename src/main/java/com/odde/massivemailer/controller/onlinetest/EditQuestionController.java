@@ -1,6 +1,7 @@
 package com.odde.massivemailer.controller.onlinetest;
 
 import com.odde.massivemailer.controller.AppController;
+import com.odde.massivemailer.model.onlinetest.Question;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,14 +16,21 @@ public class EditQuestionController extends AppController {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("description", "2 +3 = ?");
+
+        // question のデータを取得
+        String questionIdStr = request.getParameter("question_id");
+        Question question = Question.getById(Long.valueOf(questionIdStr));
+
+
+        // 画面に渡すパラメータの set
+        request.setAttribute("description", question.getDescription());
         request.setAttribute("option1", "1");
         request.setAttribute("option2", "2");
         request.setAttribute("option3", "3");
         request.setAttribute("option4", "4");
         request.setAttribute("option5", "5");
         request.setAttribute("option6", "6");
-        request.setAttribute("advice", "2 + 3 = 5です");
+        request.setAttribute("advice", question.getAdvice());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/onlinetest/edit_question.jsp");
         dispatcher.forward(request, response);
     }
