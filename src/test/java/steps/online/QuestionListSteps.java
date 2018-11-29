@@ -49,7 +49,7 @@ public class QuestionListSteps {
     }
 
     @And("^QuestionListが(\\d+)件表示され、Questionが(\\d+)行ずつ図のように表示される$")
-    public void questionlistが件表示されQuestionが行ずつ図のように表示される(int arg0, int arg1)  {
+    public void questionlistが件表示されQuestionが行ずつ図のように表示される(int arg0, int arg1) {
     }
 
     @And("^「QuestionID」「Description」「Edit」カラムが表示されている事$")
