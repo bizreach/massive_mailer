@@ -79,13 +79,16 @@ public class EditQuestionControllerTest {
     public void parseParamsEditQuestion()throws Exception {
         // Arrange
         final long questionId = 2;
+        final String description = "oiralion";
 
         request.setParameter("questionId", String.valueOf(questionId));
+        request.setParameter("description", description);
 
         // Act
         EditQuestionForm params = controller.parseParams(request);
 
         // Assert
         assertEquals(questionId, (long)params.questionId);
+        assertEquals(description, params.description);
     }
 }
