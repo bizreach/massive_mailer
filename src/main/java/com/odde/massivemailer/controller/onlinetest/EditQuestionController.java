@@ -33,7 +33,8 @@ public class EditQuestionController extends AppController {
     }
 
     protected EditQuestionForm parseParams(HttpServletRequest request) {
-        return new EditQuestionForm(Long.valueOf(request.getParameter("questionId")),
+        return new EditQuestionForm(
+                Long.valueOf(request.getParameter("questionId")),
                 request.getParameter("description")
         );
     }
