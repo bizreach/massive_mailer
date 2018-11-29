@@ -28,7 +28,10 @@ public class EditQuestionControllerTest {
         // Arrange
         final int expectedHttpStatus = 200;
         final String forwardedUrl = "/onlinetest/edit_question.jsp";
-        request.setParameter("questionId", "2");
+
+        final int questionId = 2;
+        final String description = "2 +3 = ?";
+        request.setParameter("questionId", String.valueOf(questionId));
 
         // Act
         controller.doGet(request, response);
@@ -36,5 +39,6 @@ public class EditQuestionControllerTest {
         // Assert
         assertEquals(expectedHttpStatus, response.getStatus());
         assertEquals(forwardedUrl, response.getForwardedUrl());
+        assertEquals(description, request.getAttribute("description"));
     }
 }
