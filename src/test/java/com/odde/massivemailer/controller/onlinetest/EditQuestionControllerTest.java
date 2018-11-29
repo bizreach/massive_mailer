@@ -44,6 +44,7 @@ public class EditQuestionControllerTest {
                 put("option6", "6");
             }
         };
+        final String advice = "2 + 3 = 5です";
 
         request.setParameter("questionId", String.valueOf(questionId));
 
@@ -58,6 +59,8 @@ public class EditQuestionControllerTest {
         testCases.forEach((k, v) -> {
             assertEquals(v, request.getAttribute(k));
         });
+
+        assertEquals(advice, request.getAttribute("advice"));
     }
 
     @Test
