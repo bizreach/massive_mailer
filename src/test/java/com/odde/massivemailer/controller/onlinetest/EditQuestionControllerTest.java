@@ -10,7 +10,10 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -59,7 +62,7 @@ public class EditQuestionControllerTest {
     }
 
     @Test
-    public void doPostEditQuestion() throws Exception{
+    public void doPostEditQuestion() throws Exception {
         // Arrange
         final String redirectUrl = "/onlinetest/question_list.jsp";
 
@@ -68,10 +71,19 @@ public class EditQuestionControllerTest {
 
         QuestionAndOption questionAndOption = addTestQuestion();
         Question question = questionAndOption.getQuestion();
+        List<AnswerOption> optionList = questionAndOption.getOptionList();
 
         request.addParameter("questionId", String.valueOf(question.getId()));
         request.addParameter("description", testDescription);
         request.addParameter("advice", testAdvice);
+
+        Map<String, String> testCases = new HashMap<>();
+        for (int i = 0; i < optionList.size(); i++) {
+            String key =  "option" + i;
+            String value  = "hogehoge" + i;
+            testCases.put(key, value);
+            request.setParameter(key, value);
+        }
 
         // Act
         controller.doPost(request, response);
@@ -83,6 +95,12 @@ public class EditQuestionControllerTest {
         assertEquals(question.getId(), Long.valueOf((Integer) editedQuestion.getId()));
         assertEquals(editedQuestion.getDescription(), testDescription);
         assertEquals(editedQuestion.getAdvice(), testAdvice);
+
+        List<AnswerOption> editedOptionList = new ArrayList<>(editedQuestion.getOptions());
+        for (int i = 0; i < editedOptionList.size(); i++) {
+            AnswerOption editedOption = editedOptionList.get(i);
+            assertEquals(testCases.get("option" + i), editedOption.getDescription());
+        }
     }
 
     private QuestionAndOption addTestQuestion() {
