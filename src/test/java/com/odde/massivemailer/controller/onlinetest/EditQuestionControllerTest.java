@@ -1,6 +1,7 @@
 package com.odde.massivemailer.controller.onlinetest;
 
 import com.odde.TestWithDB;
+import com.odde.massivemailer.model.onlinetest.AnswerOption;
 import com.odde.massivemailer.model.onlinetest.Question;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -34,19 +35,10 @@ public class EditQuestionControllerTest {
         final String forwardedUrl = "/onlinetest/edit_question.jsp";
 
         // 編集ページの仕様に関するもの
-        Question question = addTestQuestion();
-        Long questionId = (Long) question.getId();
-
-        final Map<String, String> testCases = new HashMap<String, String>() {
-            {
-                put("option1", "1");
-                put("option2", "2");
-                put("option3", "3");
-                put("option4", "4");
-                put("option5", "5");
-                put("option6", "6");
-            }
-        };
+        final QuestionAndOption questionAndOption = addTestQuestion();
+        final Question question = questionAndOption.getQuestion();
+        final List<AnswerOption> optionList = questionAndOption.getOptionList();
+        final Long questionId = (Long) question.getId();
         request.setParameter("question_id", String.valueOf(questionId));
 
         // Act
@@ -57,9 +49,11 @@ public class EditQuestionControllerTest {
         assertEquals(forwardedUrl, response.getForwardedUrl());
         assertEquals(question.getDescription(), request.getAttribute("description"));
 
-        testCases.forEach((k, v) -> {
-            assertEquals(v, request.getAttribute(k));
-        });
+
+        for (int i = 0; i < optionList.size(); i++) {
+            final AnswerOption option = optionList.get(i);
+            assertEquals(option.getDescription(), request.getAttribute("option" + i));
+        }
 
         assertEquals(question.getAdvice(), request.getAttribute("advice"));
     }
@@ -76,12 +70,56 @@ public class EditQuestionControllerTest {
         assertEquals(redirectUrl, response.getRedirectedUrl());
     }
 
-    private Question addTestQuestion() {
+    private QuestionAndOption addTestQuestion() {
         Question question = new Question();
         question.set("description", "Choose Scrum's word.");
         question.set("advice", "Read Scrum Guide");
         question.set("category", "test");
         question.saveIt();
-        return question;
+        return new QuestionAndOption(question, addTestOptionList(question.getId()));
+    }
+
+    private List<AnswerOption> addTestOptionList(Object questionId) {
+        return new ArrayList<AnswerOption>() {
+            {
+                add(addTestOption(questionId, "Python", false));
+                add(addTestOption(questionId, "Ceremony", true));
+                add(addTestOption(questionId, "TDD", false));
+                add(addTestOption(questionId, "Working Agreement", false));
+                add(addTestOption(questionId, "Terraform", false));
+                add(addTestOption(questionId, "Vim", false));
+            }
+        };
+    }
+
+    private AnswerOption addTestOption(Object questionId, String description, boolean isCorrect) {
+        AnswerOption option = new AnswerOption();
+        option.set("question_id", questionId);
+        option.set("description", description);
+        option.setIsCorrect(isCorrect);
+        option.saveIt();
+        return option;
+    }
+
+    /**
+     * helper class for test
+     */
+    static private class QuestionAndOption {
+
+        private Question question;
+        private List<AnswerOption> optionList;
+
+        public QuestionAndOption(Question question, List<AnswerOption> optionList) {
+            this.question = question;
+            this.optionList = optionList;
+        }
+
+        public Question getQuestion() {
+            return question;
+        }
+
+        public List<AnswerOption> getOptionList() {
+            return optionList;
+        }
     }
 }
