@@ -11,7 +11,9 @@ public class EditQuestionForm {
     public List<Long> options;
     public String advice;
 
-    public EditQuestionForm(long questionId){
+    public EditQuestionForm(long questionId, String description){
         this.questionId=questionId;
+        this.description=description;
     }
+
 }
