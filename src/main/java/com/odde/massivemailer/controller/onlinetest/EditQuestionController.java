@@ -9,6 +9,5 @@ public class EditQuestionController extends AppController {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-
     }
 }

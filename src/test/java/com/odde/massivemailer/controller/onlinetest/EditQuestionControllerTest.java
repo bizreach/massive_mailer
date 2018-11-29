@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import static org.junit.Assert.*;
+
 @RunWith(TestWithDB.class)
 public class EditQuestionControllerTest {
 
@@ -23,6 +25,14 @@ public class EditQuestionControllerTest {
 
     @Test
     public void doGetEditQuestion() throws Exception {
+        // Arrange
+        final int expectedHttpStatus = 200;
+        request.setParameter("questionId", "2");
+
+        // Act
         controller.doGet(request, response);
+
+        // Assert
+        assertEquals(expectedHttpStatus, response.getStatus());
     }
 }
