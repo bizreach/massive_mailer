@@ -11,9 +11,10 @@ public class EditQuestionForm {
     public List<Long> options;
     public String advice;
 
-    public EditQuestionForm(long questionId, String description){
+    public EditQuestionForm(long questionId, String description, String advice){
         this.questionId=questionId;
         this.description=description;
+        this.advice=advice;
     }
 
 }

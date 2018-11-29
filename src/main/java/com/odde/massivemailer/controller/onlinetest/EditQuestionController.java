@@ -36,13 +36,22 @@ public class EditQuestionController extends AppController {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // UPDATE
+        EditQuestionForm form = this.parseParams(request);
+        Question question = new Question();
+        question.setDescription(form.description);
+        question.set("advice", form.advice);
+        question.setId(form.questionId);
+        question.saveIt();
         response.sendRedirect("/onlinetest/question_list.jsp");
     }
 
     protected EditQuestionForm parseParams(HttpServletRequest request) {
         return new EditQuestionForm(
                 Long.valueOf(request.getParameter("questionId")),
-                request.getParameter("description")
+                request.getParameter("description"),
+                request.getParameter("advice")
         );
     }
 }
