@@ -77,6 +77,11 @@ public class EditQuestionControllerTest {
 
     @Test
     public void parseParamsEditQuestion()throws Exception {
+        // Arrange
+
+        // Act
         controller.parseParams(request);
+
+        // Assert
     }
 }
