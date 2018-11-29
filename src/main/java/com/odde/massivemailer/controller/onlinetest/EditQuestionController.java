@@ -32,18 +32,7 @@ public class EditQuestionController extends AppController {
         response.sendRedirect("/onlinetest/question_list.jsp");
     }
 
-    protected EditQuestionParams parseParams(HttpServletRequest request){
-        return new EditQuestionParams(Long.valueOf(request.getParameter("questionId")));
-    }
-}
-
-class EditQuestionParams{
-    public Long questionId;
-    public String description;
-    public List<Long> options;
-    public String advice;
-
-    public EditQuestionParams(long questionId){
-        this.questionId=questionId;
+    protected EditQuestionForm parseParams(HttpServletRequest request){
+        return new EditQuestionForm(Long.valueOf(request.getParameter("questionId")));
     }
 }

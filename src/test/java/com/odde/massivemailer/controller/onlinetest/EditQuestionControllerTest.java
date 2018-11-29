@@ -83,7 +83,7 @@ public class EditQuestionControllerTest {
         request.setParameter("questionId", String.valueOf(questionId));
 
         // Act
-        EditQuestionParams params = controller.parseParams(request);
+        EditQuestionForm params = controller.parseParams(request);
 
         // Assert
         assertEquals(questionId, (long)params.questionId);
