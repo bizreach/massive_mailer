@@ -20,10 +20,8 @@ Feature: Question List
       | 9 | く  |
       | 10 | け |
     When 左部のサイドバーのQuestionListをクリックしたとき
-    Then 1件目のQuestionIDが"1"と表示しされている事
+    Then 1件目のQuestionのQuestionIDが"1"、Descriptionに"Scrumの用語はどれか？"と表示されている事
     And QuestionListが10件表示され、Questionが1行ずつ図のように表示される
-    And 「QuestionID」「Description」「Edit」カラムが表示されている事
-    And 1件目のDescriptionに"Scrumの用語はどれか？"と表示されるされている事
     And 「Edit」というキャプションのボタンが1件毎に表示される事
     And QuestionListの一番上にはQuestionIDの昇順で表示される事
 

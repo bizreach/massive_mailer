@@ -40,8 +40,8 @@ public class QuestionListSteps {
         questionDataTable = arg3;
     }
 
-    @Then("^(\\d+)件目のQuestionIDが\"([^\"]*)\"と表示しされている事$")
-    public void 件目のquestionidがと表示しされている事(int arg0, String arg1) {
+    @Then("^(\\d+)件目のQuestionのQuestionIDが\"([^\"]*)\"、Descriptionに\"([^\"]*)\"と表示されている事$")
+    public void 件目のquestionのquestionidがDescriptionにと表示されている事(int arg0, String arg1, String arg2) throws Throwable {
         String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
         driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
@@ -52,13 +52,6 @@ public class QuestionListSteps {
         driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
 
-    @And("^「QuestionID」「Description」「Edit」カラムが表示されている事$")
-    public void questionidDescriptionEditカラムが表示されている事() {
-    }
-
-    @And("^(\\d+)件目のDescriptionに\"([^\"]*)\"と表示されるされている事$")
-    public void 件目のdescriptionにと表示されるされている事(int arg0, String arg1) {
-    }
 
     @And("^「Edit」というキャプションのボタンが(\\d+)件毎に表示される事$")
     public void editというキャプションのボタンが件毎に表示される事(int arg0) {
