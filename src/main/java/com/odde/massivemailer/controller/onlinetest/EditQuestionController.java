@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/onlinetest/edit_question")
 public class EditQuestionController extends AppController {
@@ -44,6 +45,14 @@ public class EditQuestionController extends AppController {
         question.set("advice", form.advice);
         question.setId(form.questionId);
         question.saveIt();
+
+        List<AnswerOption> optionList = new ArrayList<>(question.getOptions());
+        for (int i = 0; i < optionList.size() ; i++) {
+            AnswerOption option = optionList.get(i);
+            option.set("description", request.getParameter("option" + i));
+            option.saveIt();
+        }
+
         response.sendRedirect("/onlinetest/question_list.jsp");
     }
 
