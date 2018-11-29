@@ -40,6 +40,12 @@ public class EditQuestionController extends AppController {
 
         // UPDATE
         EditQuestionForm form = this.parseParams(request);
+        saveQuestion(request, form);
+
+        response.sendRedirect("/onlinetest/question_list.jsp");
+    }
+
+    private void saveQuestion(HttpServletRequest request, EditQuestionForm form) {
         Question question = new Question();
         question.setDescription(form.description);
         question.set("advice", form.advice);
@@ -52,8 +58,6 @@ public class EditQuestionController extends AppController {
             option.set("description", request.getParameter("option" + i));
             option.saveIt();
         }
-
-        response.sendRedirect("/onlinetest/question_list.jsp");
     }
 
     protected EditQuestionForm parseParams(HttpServletRequest request) {
