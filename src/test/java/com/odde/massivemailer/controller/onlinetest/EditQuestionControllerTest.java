@@ -38,6 +38,10 @@ public class EditQuestionControllerTest {
             {
                 put("option1", "1");
                 put("option2", "2");
+                put("option3", "3");
+                put("option4", "4");
+                put("option5", "5");
+                put("option6", "6");
             }
         };
 
