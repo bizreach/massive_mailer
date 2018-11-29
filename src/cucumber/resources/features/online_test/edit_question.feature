@@ -19,7 +19,7 @@ Feature:
     And Edit画面にcancelボタンがある
 
   @developing
-  Scenario:
+  Scenario: saveボタンを押下したとき、更新メッセージが表示される
     Given QuestionのIDは2である
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面のoption1に"1"が表示される
@@ -33,6 +33,22 @@ Feature:
     And Edit画面にcancelボタンがある
     When Edit画面のsaveボタンを押す
     Then Edit画面に更新されましたというメッセージが表示される
+
+  @developing
+  Scenario: cancelボタンを押下したとき、QuestionList画面に遷移する
+    Given QuestionのIDは2である
+    Then Descriptionに"2 +3 = ?"が表示される
+    And Edit画面のoption1に"1"が表示される
+    And Edit画面のoption2に"2"が表示される
+    And Edit画面のoption3に"3"が表示される
+    And Edit画面のoption4に"4"が表示される
+    And Edit画面のoption5に"5"が表示される
+    And Edit画面のoption6に"6"が表示される
+    And Edit画面のAdviceに"2 + 3 = 5です"が表示される
+    And Edit画面にsaveボタンがある
+    And Edit画面にcancelボタンがある
+    When Edit画面のcancelボタンを押す
+    Then QuestionList画面に遷移する
 
 #    Then Descriptionに"2 +3 = ?"が表示される
 #   And option2に"2"が表示される
