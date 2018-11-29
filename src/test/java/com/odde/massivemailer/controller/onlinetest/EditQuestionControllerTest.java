@@ -45,4 +45,9 @@ public class EditQuestionControllerTest {
         assertEquals(option1, request.getAttribute("option1"));
         assertEquals(option2, request.getAttribute("option2"));
     }
+
+    @Test
+    public void doPostEditQuestion() throws Exception{
+        controller.doPost(request, response);
+    }
 }
