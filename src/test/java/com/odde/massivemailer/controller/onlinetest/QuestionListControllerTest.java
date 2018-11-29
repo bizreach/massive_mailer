@@ -2,7 +2,7 @@ package com.odde.massivemailer.controller.onlinetest;
 
 import com.odde.TestWithDB;
 import com.odde.massivemailer.model.onlinetest.Question;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -10,7 +10,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(TestWithDB.class)
 public class QuestionListControllerTest {
@@ -19,18 +20,11 @@ public class QuestionListControllerTest {
     private final MockHttpServletRequest request = new MockHttpServletRequest();
     private final MockHttpServletResponse response = new MockHttpServletResponse();
 
-    @Before
-    public void prepareTestData() {
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
-        Question.createIt("description", "Scrumの用語はどれか？");
+    @BeforeClass
+    public static void prepareTestData() {
+        for (int i = 0; i < 10; i++) {
+            Question.createIt("description", "Scrumの用語はどれか？");
+        }
     }
 
     @Test
@@ -43,7 +37,7 @@ public class QuestionListControllerTest {
     }
 
     @Test
-    public void doGetQuestionAll() throws Exception {
+    public void doGetQuestions() {
         controller.doGet(request, response);
         List<Question> questions = (List<Question>) request.getAttribute("questions");
         long questionCount = questions.size();

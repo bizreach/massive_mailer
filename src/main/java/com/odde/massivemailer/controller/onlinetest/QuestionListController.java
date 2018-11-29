@@ -5,12 +5,11 @@ import com.odde.massivemailer.model.onlinetest.Question;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 public class QuestionListController extends AppController {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void doGet(HttpServletRequest request, HttpServletResponse response){
         List<Question> questions = Question.findAll();
         request.setAttribute("questions", questions);
     }
