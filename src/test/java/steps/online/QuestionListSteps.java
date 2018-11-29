@@ -42,18 +42,13 @@ public class QuestionListSteps {
 
     @Then("^(\\d+)件目のQuestionIDが\"([^\"]*)\"と表示しされている事$")
     public void 件目のquestionidがと表示しされている事(int arg0, String arg1) {
-        //System.out.println(questionDataTable);
         String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
-        Map.Entry<String, String> questionIdDescriptionEntry = questionDataTable.asMap(String.class, String.class).entrySet().stream().findFirst().orElseThrow(PendingException::new);
-        driver.pageShouldContain(questionIdDescriptionEntry.getKey()+ " " + questionIdDescriptionEntry.getValue() + " Edit");
+        driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
 
     @And("^QuestionListが(\\d+)件表示され、Questionが(\\d+)行ずつ図のように表示される$")
     public void questionlistが件表示されQuestionが行ずつ図のように表示される(int arg0, int arg1) {
-        //System.out.println(questionDataTable);
         String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
-        //System.out.println(description);
-        //Map.Entry<String, String> questionIdDescriptionEntry = questionDataTable.asMap(String.class, String.class).entrySet().stream().findFirst().orElseThrow(PendingException::new);
         driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
 
