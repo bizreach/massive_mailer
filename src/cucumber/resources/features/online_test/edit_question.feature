@@ -2,7 +2,7 @@ Feature:
   Admin can edit questions
 
   Background: Display Edit Question page
-  @now
+
   Scenario: QuestionListから、編集したいデータの編集画面に遷移して、Questionの内容が表示される
     Given 対象のQuestionがある
     And そのQuestionのDescriptionは"2 +3 = ?"である
@@ -21,8 +21,7 @@ Feature:
     And Edit画面にsaveボタンがある
     And Edit画面にcancelボタンがある
 
-  @now
-  Scenario: QuestionListから、編集したいデータの編集画面に遷移して、Questionの内容が表示される2
+  Scenario: QuestionListから、編集したいデータの編集画面に遷移して、Questionの内容が表示される(Descriptionが異なる場合)
     Given 対象のQuestionがある
     And そのQuestionのDescriptionは"2 +4 = ?"である
     And そのQuestionのAdviceは"2 + 3 = 5です"である
