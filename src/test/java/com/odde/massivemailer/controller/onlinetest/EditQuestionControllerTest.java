@@ -63,7 +63,7 @@ public class EditQuestionControllerTest {
 
     @Test
     public void doPostEditQuestion() throws Exception {
-        // Arrange
+        // ### Arrange ###
         final String redirectUrl = "/onlinetest/question_list.jsp";
 
         final String testDescription = "Choose Scrum's word.";
@@ -85,22 +85,19 @@ public class EditQuestionControllerTest {
         Question question = questionAndOption.getQuestion();
 
         // prepare request
-        request.addParameter("questionId", String.valueOf(question.getId()));
-        request.addParameter("description", testDescription);
-        request.addParameter("advice", testAdvice);
-        request.addParameter("check", testCheck);
-        optionTestCases.forEach((k, v) -> {
-            request.setParameter(k, v);
-        });
+        createTestRequest(testDescription, testAdvice, optionTestCases, testCheck, question);
 
-        // Act
+        // ### Act ###
         controller.doPost(request, response);
 
-        // Assert
+        // ### Assert ###
         assertEquals(redirectUrl, response.getRedirectedUrl());
+        assertEditedQuestion(testDescription, testAdvice, optionTestCases, (Long) question.getId());
+    }
 
-        Question editedQuestion = Question.getById((Long) question.getId());
-        assertEquals(question.getId(), Long.valueOf((Integer) editedQuestion.getId()));
+    private void assertEditedQuestion(String testDescription, String testAdvice, Map<String, String> optionTestCases, Long questionId) {
+        Question editedQuestion = Question.getById(questionId);
+        assertEquals(questionId, Long.valueOf((Integer) editedQuestion.getId()));
         assertEquals(editedQuestion.getDescription(), testDescription);
         assertEquals(editedQuestion.getAdvice(), testAdvice);
 
@@ -117,6 +114,16 @@ public class EditQuestionControllerTest {
         assertFalse(editedOptionList.get(3).isCorrect());
         assertFalse(editedOptionList.get(4).isCorrect());
         assertFalse(editedOptionList.get(5).isCorrect());
+    }
+
+    private void createTestRequest(String testDescription, String testAdvice, Map<String, String> optionTestCases, String testCheck, Question question) {
+        request.addParameter("questionId", String.valueOf(question.getId()));
+        request.addParameter("description", testDescription);
+        request.addParameter("advice", testAdvice);
+        request.addParameter("check", testCheck);
+        optionTestCases.forEach((k, v) -> {
+            request.setParameter(k, v);
+        });
     }
 
     private QuestionAndOption addTestQuestion() {
