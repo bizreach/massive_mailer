@@ -35,7 +35,7 @@ public class EditQuestionSteps {
 
     @Given("^そのQuestionのDescriptionは\"([^\"]*)\"である$")
     public void そのquestionのdescriptionは_である(String arg1) throws Throwable {
-        question.setDescription("2 +3 = ?");
+        question.setDescription(arg1);
     }
 
     @Then("^Descriptionに\"([^\"]*)\"が表示される$")
@@ -51,7 +51,7 @@ public class EditQuestionSteps {
 
     @When("^QuestionListから、追加したデータを編集する画面に行く$")
     public void 追加したデータを編集する画面に行く() {
-        site.visit("onlinetest/edit_question.jsp" + "?question_id=" + question.getId());
+        site.visit("onlinetest/edit_question" + "?question_id=" + question.getId());
     }
 
 

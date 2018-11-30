@@ -33,7 +33,7 @@
 										<div class="col-lg-1">Description:</div>
 										<div class="col-lg-11">
 											<input type="text" class="form-control" name="description"
-												id="description" maxlength="200" value="2 +3 = ?">
+												id="description" maxlength="200" value="${description}">
 										</div>
 									</div>
 									<br> <br>

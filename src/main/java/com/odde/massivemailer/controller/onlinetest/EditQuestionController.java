@@ -31,7 +31,7 @@ public class EditQuestionController extends AppController {
         // 画面に渡すパラメータの set
         request.setAttribute("description", question.getDescription());
         for (int i = 0;i < 6;i++) {
-            request.setAttribute("option" + i, options.get(i).getDescription());
+            request.setAttribute("option" + i,i);// options.get(i).getDescription());
         }
         request.setAttribute("advice", question.getAdvice());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/onlinetest/edit_question.jsp");
