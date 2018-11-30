@@ -77,13 +77,20 @@ public class EditQuestionControllerTest {
         request.addParameter("description", testDescription);
         request.addParameter("advice", testAdvice);
 
-        Map<String, String> testCases = new HashMap<>();
-        for (int i = 0; i < optionList.size(); i++) {
-            String key =  "option" + i;
-            String value  = "hogehoge" + i;
-            testCases.put(key, value);
-            request.setParameter(key, value);
-        }
+        Map<String, String> testCases = new HashMap<String, String>() {
+            {
+                put("option0", "hogehoge0");
+                put("option1", "hogehoge1");
+                put("option2", "hogehoge2");
+                put("option3", "hogehoge3");
+                put("option4", "hogehoge4");
+                put("option5", "hogehoge5");
+            }
+        };
+
+        testCases.forEach((k, v) -> {
+            request.setParameter(k, v);
+        });
 
         // Act
         controller.doPost(request, response);
