@@ -68,13 +68,7 @@ public class EditQuestionControllerTest {
 
         final String testDescription = "Choose Scrum's word.";
         final String testAdvice = "Read Scrum Guide";
-
-        // create test data
-        QuestionAndOption questionAndOption = addTestQuestion();
-        Question question = questionAndOption.getQuestion();
-
-        // prepare request
-        Map<String, String> optionTestCases = new HashMap<String, String>() {
+        final Map<String, String> optionTestCases = new HashMap<String, String>() {
             {
                 put("option1", "Java");
                 put("option2", "Python");
@@ -84,9 +78,17 @@ public class EditQuestionControllerTest {
                 put("option6", "Lisp");
             }
         };
+        final String testCheck = "3";
+
+        // create test data
+        QuestionAndOption questionAndOption = addTestQuestion();
+        Question question = questionAndOption.getQuestion();
+
+        // prepare request
         request.addParameter("questionId", String.valueOf(question.getId()));
         request.addParameter("description", testDescription);
         request.addParameter("advice", testAdvice);
+        request.addParameter("check", testCheck);
         optionTestCases.forEach((k, v) -> {
             request.setParameter(k, v);
         });
@@ -109,6 +111,12 @@ public class EditQuestionControllerTest {
         assertEquals(optionTestCases.get("option4"), editedOptionList.get(3).getDescription());
         assertEquals(optionTestCases.get("option5"), editedOptionList.get(4).getDescription());
         assertEquals(optionTestCases.get("option6"), editedOptionList.get(5).getDescription());
+        assertFalse(editedOptionList.get(0).isCorrect());
+        assertFalse(editedOptionList.get(1).isCorrect());
+        assertTrue(editedOptionList.get(2).isCorrect());
+        assertFalse(editedOptionList.get(3).isCorrect());
+        assertFalse(editedOptionList.get(4).isCorrect());
+        assertFalse(editedOptionList.get(5).isCorrect());
     }
 
     private QuestionAndOption addTestQuestion() {
