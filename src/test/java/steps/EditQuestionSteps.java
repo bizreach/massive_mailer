@@ -27,14 +27,21 @@ public class EditQuestionSteps {
         question = new Question();
     }
 
-    @Given("^そのQuestionのDescriptionは\"2 \\+3 = \\?\"である$")
-    public void QuestionのDescriptionを指定() {
-        question.setDescription("2 +3 = ?");
-    }
-
     @Given("^そのQuestionのAdviceは\"2 \\+ 3 = 5です\"である$")
     public void QuestionのAdviceを指定() {
         question.setAdvice("2 + 3 = 5です");
+    }
+
+
+    @Given("^そのQuestionのDescriptionは\"([^\"]*)\"である$")
+    public void そのquestionのdescriptionは_である(String arg1) throws Throwable {
+        question.setDescription("2 +3 = ?");
+    }
+
+    @Then("^Descriptionに\"([^\"]*)\"が表示される$")
+    public void descriptionに_が表示される(String arg1) throws Throwable {
+        WebElement description = findElementById("description");
+        assertEquals(description.getAttribute("value"), arg1);
     }
 
     @Given("^そのQuestionを編集したい$")
@@ -54,12 +61,6 @@ public class EditQuestionSteps {
         assertEquals("editQuestion", description.getAttribute("name"));
         assertEquals("http://localhost:8060/onlinetest/edit_question", description.getAttribute("action"));
         assertEquals("post", description.getAttribute("method"));
-    }
-
-    @Then("^Descriptionに\"2 \\+3 = \\?\"が表示される$")
-    public void descriptionに_が入力されている() {
-        WebElement description = findElementById("description");
-        assertEquals(description.getAttribute("value"), "2 +3 = ?");
     }
 
     @Then("^Edit画面のoption(\\d+)に\"(.+)\"が表示される$")

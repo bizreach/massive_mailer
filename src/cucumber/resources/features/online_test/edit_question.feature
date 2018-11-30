@@ -21,6 +21,25 @@ Feature:
     And Edit画面にsaveボタンがある
     And Edit画面にcancelボタンがある
 
+  @now
+  Scenario: QuestionListから、編集したいデータの編集画面に遷移して、Questionの内容が表示される2
+    Given 対象のQuestionがある
+    And そのQuestionのDescriptionは"2 +4 = ?"である
+    And そのQuestionのAdviceは"2 + 3 = 5です"である
+    And そのQuestionを編集したい
+    When QuestionListから、追加したデータを編集する画面に行く
+    Then Descriptionに"2 +4 = ?"が表示される
+    And Edit画面に更新用formが表示される
+    And Edit画面のoption1に"1"が表示される
+    And Edit画面のoption2に"2"が表示される
+    And Edit画面のoption3に"3"が表示される
+    And Edit画面のoption4に"4"が表示される
+    And Edit画面のoption5に"5"が表示される
+    And Edit画面のoption6に"6"が表示される
+    And Edit画面のAdviceに"2 + 3 = 5です"が表示される
+    And Edit画面にsaveボタンがある
+    And Edit画面にcancelボタンがある
+
   @developing
   Scenario: saveボタンを押下したとき、更新メッセージが表示される
     Given QuestionのIDは2である
