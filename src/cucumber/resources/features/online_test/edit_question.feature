@@ -2,9 +2,13 @@ Feature:
   Admin can edit questions
 
   Background: Display Edit Question page
-
+  @now
   Scenario:
-    Given QuestionのIDは2である
+    Given Questionがある
+    And そのQuestionのDescriptionは"2 +3 = ?"である
+    And そのQuestionのAdviceは"2 + 3 = 5です"である
+    And Questionを追加する
+    When 追加したデータを編集する画面に行く
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面に更新用formが表示される
     And Edit画面のoption1に"1"が表示される

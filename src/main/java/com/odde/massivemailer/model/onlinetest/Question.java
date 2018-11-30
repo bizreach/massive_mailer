@@ -46,6 +46,8 @@ public class Question extends ApplicationModel {
 
     public void setDescription(String description) {set( DESCRIPTION, description); }
 
+    public void setAdvice(String advice) {set( ADVICE, advice); }
+
     public String getDescription() {
         return getString(DESCRIPTION);
     }

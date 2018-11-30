@@ -1,7 +1,9 @@
 package steps;
 
+import com.odde.massivemailer.model.onlinetest.Question;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebElement;
 import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
@@ -12,12 +14,39 @@ import static org.junit.Assert.*;
 public class EditQuestionSteps {
     private final MassiveMailerSite site = new MassiveMailerSite();
     private final WebDriverWrapper driver = site.getDriver();
+    private Question question;
 
     @Given("^QuestionのIDは2である$")
     public void EditQuestion() {
         site.visit("onlinetest/edit_question.jsp");
         assertEquals(driver.getCurrentTitle(), "Edit Question");
     }
+
+    @Given("^Questionがある$")
+    public void Questionがある() {
+        question = new Question();
+    }
+
+    @Given("^そのQuestionのDescriptionは\"2 \\+3 = \\?\"である$")
+    public void QuestionのDescriptionを指定() {
+        question.setDescription("2 +3 = ?");
+    }
+
+    @Given("^そのQuestionのAdviceは\"2 \\+ 3 = 5です\"である$")
+    public void QuestionのAdviceを指定() {
+        question.setAdvice("2 + 3 = 5です");
+    }
+
+    @Given("^Questionを追加する$")
+    public void Questionを追加する() {
+        question.insert();
+    }
+
+    @When("^追加したデータを編集する画面に行く$")
+    public void 追加したデータを編集する画面に行く() {
+        site.visit("onlinetest/edit_question.jsp" + "?question_id=" + question.getId());
+    }
+
 
     @Then("^Edit画面に更新用formが表示される")
     public void Edit画面に更新用formが表示される() {
