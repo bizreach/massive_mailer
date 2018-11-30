@@ -69,15 +69,12 @@ public class EditQuestionControllerTest {
         final String testDescription = "Choose Scrum's word.";
         final String testAdvice = "Read Scrum Guide";
 
+        // create test data
         QuestionAndOption questionAndOption = addTestQuestion();
         Question question = questionAndOption.getQuestion();
-        List<AnswerOption> optionList = questionAndOption.getOptionList();
 
-        request.addParameter("questionId", String.valueOf(question.getId()));
-        request.addParameter("description", testDescription);
-        request.addParameter("advice", testAdvice);
-
-        Map<String, String> testCases = new HashMap<String, String>() {
+        // prepare request
+        Map<String, String> optionTestCases = new HashMap<String, String>() {
             {
                 put("option0", "hogehoge0");
                 put("option1", "hogehoge1");
@@ -87,8 +84,10 @@ public class EditQuestionControllerTest {
                 put("option5", "hogehoge5");
             }
         };
-
-        testCases.forEach((k, v) -> {
+        request.addParameter("questionId", String.valueOf(question.getId()));
+        request.addParameter("description", testDescription);
+        request.addParameter("advice", testAdvice);
+        optionTestCases.forEach((k, v) -> {
             request.setParameter(k, v);
         });
 
@@ -104,12 +103,12 @@ public class EditQuestionControllerTest {
         assertEquals(editedQuestion.getAdvice(), testAdvice);
 
         List<AnswerOption> editedOptionList = new ArrayList<>(editedQuestion.getOptions());
-        assertEquals(testCases.get("option0"), editedOptionList.get(0).getDescription());
-        assertEquals(testCases.get("option1"), editedOptionList.get(1).getDescription());
-        assertEquals(testCases.get("option2"), editedOptionList.get(2).getDescription());
-        assertEquals(testCases.get("option3"), editedOptionList.get(3).getDescription());
-        assertEquals(testCases.get("option4"), editedOptionList.get(4).getDescription());
-        assertEquals(testCases.get("option5"), editedOptionList.get(5).getDescription());
+        assertEquals(optionTestCases.get("option0"), editedOptionList.get(0).getDescription());
+        assertEquals(optionTestCases.get("option1"), editedOptionList.get(1).getDescription());
+        assertEquals(optionTestCases.get("option2"), editedOptionList.get(2).getDescription());
+        assertEquals(optionTestCases.get("option3"), editedOptionList.get(3).getDescription());
+        assertEquals(optionTestCases.get("option4"), editedOptionList.get(4).getDescription());
+        assertEquals(optionTestCases.get("option5"), editedOptionList.get(5).getDescription());
     }
 
     private QuestionAndOption addTestQuestion() {
