@@ -25,7 +25,7 @@ Feature: Question List
     And 「Edit」というキャプションのボタンが1件毎に表示される事
     And QuestionListの一覧は、QuestionID昇順で表示される事
 
-  @now
+  @developing
   Scenario: 任意のクエスチョンの編集画面上に遷移する
     Given QuestionListが開かれ、Questionが登録されている
     When Question2のレコードの「Edit」ボタンを押した時

@@ -115,7 +115,7 @@ public class QuestionListSteps {
 
     @Then("^Question(\\d+)の編集画面に遷移する$")
     public void question_の編集画面に遷移する(int arg1) {
-        String expect = site.baseUrl() + "/onlinetest/edit_question?question_id=2?";
+        String expect = site.baseUrl() + "/onlinetest/edit_question?question_id=2";
         driver.expectRedirect(expect);
     }
 }

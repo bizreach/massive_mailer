@@ -21,6 +21,7 @@ public class EditQuestionController extends AppController {
 
         // question のデータを取得
         String questionIdStr = request.getParameter("question_id");
+        System.out.println(questionIdStr);
         Question question = Question.getById(Long.valueOf(questionIdStr));
         ArrayList<AnswerOption> options = new ArrayList(question.getOptions());
 
