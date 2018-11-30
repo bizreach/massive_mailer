@@ -15,6 +15,7 @@
     <jsp:body>
 			<form name="editQuestion" id="editQuestion" method="post"
 				action="edit_question">
+					<input type="hidden" value="1" name="question_id">
 
 					<div class="row">
 						<div class="col-lg-12">

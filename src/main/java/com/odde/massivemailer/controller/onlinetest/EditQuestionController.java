@@ -56,7 +56,7 @@ public class EditQuestionController extends AppController {
 
         question.getOptions().forEach(Model::delete);
 
-        Integer correctNumber = Integer.valueOf(request.getParameter("check"));
+        Integer correctNumber = 1;
         for (int i = 0; i < 6 ; i++) {
             AnswerOption option = new AnswerOption();
             option.set("question_id", form.questionId);
@@ -74,7 +74,7 @@ public class EditQuestionController extends AppController {
 
     protected EditQuestionForm parseParams(HttpServletRequest request) {
         return new EditQuestionForm(
-                Long.valueOf(request.getParameter("questionId")),
+                Long.valueOf(request.getParameter("question_id")),
                 request.getParameter("description"),
                 request.getParameter("advice")
         );
