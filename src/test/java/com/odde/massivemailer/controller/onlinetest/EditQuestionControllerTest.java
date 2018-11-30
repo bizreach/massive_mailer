@@ -129,7 +129,18 @@ public class EditQuestionControllerTest {
         controller.doPost(request, response);
 
         // ### Assert ###
-        assertEditedQuestion(testDescription, testAdvice, optionTestCases, (Long) question.getId());
+        Question editedQuestion = Question.getById((Long) question.getId());
+        assertEquals(question.getId(), Long.valueOf((Integer) editedQuestion.getId()));
+        assertEquals(editedQuestion.getDescription(), testDescription);
+        assertEquals(editedQuestion.getAdvice(), testAdvice);
+
+        List<AnswerOption> editedOptionList = new ArrayList<>(editedQuestion.getOptions());
+        assertEquals(optionTestCases.get("option1"), editedOptionList.get(0).getDescription());
+        assertEquals(optionTestCases.get("option2"), editedOptionList.get(1).getDescription());
+        assertEquals(optionTestCases.get("option3"), editedOptionList.get(2).getDescription());
+        assertFalse(editedOptionList.get(0).isCorrect());
+        assertFalse(editedOptionList.get(1).isCorrect());
+        assertTrue(editedOptionList.get(2).isCorrect());
     }
 
     private void createDefaultRequestWithTestData() {
