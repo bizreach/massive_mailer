@@ -54,9 +54,15 @@ public class EditQuestionController extends AppController {
         question.saveIt();
 
         List<AnswerOption> optionList = new ArrayList<>(question.getOptions());
+        Integer correctNumber = Integer.valueOf(request.getParameter("check"));
         for (int i = 0; i < optionList.size() ; i++) {
             AnswerOption option = optionList.get(i);
             option.set("description", request.getParameter("option" + (i + 1)));
+            if (correctNumber == i + 1) {
+                option.setIsCorrect(true);
+            } else {
+                option.setIsCorrect(false);
+            }
             option.saveIt();
         }
     }
