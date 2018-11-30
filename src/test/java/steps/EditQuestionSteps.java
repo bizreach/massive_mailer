@@ -22,7 +22,7 @@ public class EditQuestionSteps {
         assertEquals(driver.getCurrentTitle(), "Edit Question");
     }
 
-    @Given("^Questionがある$")
+    @Given("^対象のQuestionがある$")
     public void Questionがある() {
         question = new Question();
     }
@@ -37,12 +37,12 @@ public class EditQuestionSteps {
         question.setAdvice("2 + 3 = 5です");
     }
 
-    @Given("^Questionを追加する$")
-    public void Questionを追加する() {
+    @Given("^そのQuestionを編集したい$")
+    public void そのQuestionを編集したい() {
         question.insert();
     }
 
-    @When("^追加したデータを編集する画面に行く$")
+    @When("^QuestionListから、追加したデータを編集する画面に行く$")
     public void 追加したデータを編集する画面に行く() {
         site.visit("onlinetest/edit_question.jsp" + "?question_id=" + question.getId());
     }

@@ -3,12 +3,12 @@ Feature:
 
   Background: Display Edit Question page
   @now
-  Scenario:
-    Given Questionがある
+  Scenario: QuestionListから、編集したいデータの編集画面に遷移して、Questionの内容が表示される
+    Given 対象のQuestionがある
     And そのQuestionのDescriptionは"2 +3 = ?"である
     And そのQuestionのAdviceは"2 + 3 = 5です"である
-    And Questionを追加する
-    When 追加したデータを編集する画面に行く
+    And そのQuestionを編集したい
+    When QuestionListから、追加したデータを編集する画面に行く
     Then Descriptionに"2 +3 = ?"が表示される
     And Edit画面に更新用formが表示される
     And Edit画面のoption1に"1"が表示される
