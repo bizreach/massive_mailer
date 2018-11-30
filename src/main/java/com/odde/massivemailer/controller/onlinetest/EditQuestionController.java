@@ -3,6 +3,7 @@ package com.odde.massivemailer.controller.onlinetest;
 import com.odde.massivemailer.controller.AppController;
 import com.odde.massivemailer.model.onlinetest.AnswerOption;
 import com.odde.massivemailer.model.onlinetest.Question;
+import org.javalite.activejdbc.Model;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet("/onlinetest/edit_question")
 public class EditQuestionController extends AppController {
@@ -53,17 +55,21 @@ public class EditQuestionController extends AppController {
         question.setId(form.questionId);
         question.saveIt();
 
-        List<AnswerOption> optionList = new ArrayList<>(question.getOptions());
+        question.getOptions().forEach(Model::delete);
+
         Integer correctNumber = Integer.valueOf(request.getParameter("check"));
-        for (int i = 0; i < optionList.size() ; i++) {
-            AnswerOption option = optionList.get(i);
-            option.set("description", request.getParameter("option" + (i + 1)));
+        for (int i = 0; i < 6 ; i++) {
+            AnswerOption option = new AnswerOption();
+            option.set("question_id", form.questionId);
             if (correctNumber == i + 1) {
                 option.setIsCorrect(true);
             } else {
                 option.setIsCorrect(false);
             }
-            option.saveIt();
+            Optional.ofNullable(request.getParameter("option" + (i + 1))).ifPresent(description -> {
+                option.set("description", description);
+                option.saveIt();
+            });
         }
     }
 
