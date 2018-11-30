@@ -76,12 +76,12 @@ public class EditQuestionControllerTest {
         // prepare request
         Map<String, String> optionTestCases = new HashMap<String, String>() {
             {
-                put("option0", "hogehoge0");
                 put("option1", "hogehoge1");
                 put("option2", "hogehoge2");
                 put("option3", "hogehoge3");
                 put("option4", "hogehoge4");
                 put("option5", "hogehoge5");
+                put("option6", "hogehoge6");
             }
         };
         request.addParameter("questionId", String.valueOf(question.getId()));
@@ -103,12 +103,12 @@ public class EditQuestionControllerTest {
         assertEquals(editedQuestion.getAdvice(), testAdvice);
 
         List<AnswerOption> editedOptionList = new ArrayList<>(editedQuestion.getOptions());
-        assertEquals(optionTestCases.get("option0"), editedOptionList.get(0).getDescription());
-        assertEquals(optionTestCases.get("option1"), editedOptionList.get(1).getDescription());
-        assertEquals(optionTestCases.get("option2"), editedOptionList.get(2).getDescription());
-        assertEquals(optionTestCases.get("option3"), editedOptionList.get(3).getDescription());
-        assertEquals(optionTestCases.get("option4"), editedOptionList.get(4).getDescription());
-        assertEquals(optionTestCases.get("option5"), editedOptionList.get(5).getDescription());
+        assertEquals(optionTestCases.get("option1"), editedOptionList.get(0).getDescription());
+        assertEquals(optionTestCases.get("option2"), editedOptionList.get(1).getDescription());
+        assertEquals(optionTestCases.get("option3"), editedOptionList.get(2).getDescription());
+        assertEquals(optionTestCases.get("option4"), editedOptionList.get(3).getDescription());
+        assertEquals(optionTestCases.get("option5"), editedOptionList.get(4).getDescription());
+        assertEquals(optionTestCases.get("option6"), editedOptionList.get(5).getDescription());
     }
 
     private QuestionAndOption addTestQuestion() {
