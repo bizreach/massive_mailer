@@ -76,12 +76,12 @@ public class EditQuestionControllerTest {
         // prepare request
         Map<String, String> optionTestCases = new HashMap<String, String>() {
             {
-                put("option1", "hogehoge1");
-                put("option2", "hogehoge2");
-                put("option3", "hogehoge3");
-                put("option4", "hogehoge4");
-                put("option5", "hogehoge5");
-                put("option6", "hogehoge6");
+                put("option1", "Java");
+                put("option2", "Python");
+                put("option3", "Planning");
+                put("option4", "Assembler");
+                put("option5", "C");
+                put("option6", "Lisp");
             }
         };
         request.addParameter("questionId", String.valueOf(question.getId()));
