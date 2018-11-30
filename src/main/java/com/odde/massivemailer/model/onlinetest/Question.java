@@ -30,6 +30,13 @@ public class Question extends ApplicationModel {
         set(DESCRIPTION, description);
     }
 
+    public Question(int id, String description, String advice, String category) {
+        set("id", id);
+        set(DESCRIPTION, description);
+        set(ADVICE, advice);
+        set(CATEGORY, category);
+    }
+
     static Stream<Long> getNRandomIds(int count) {
         LazyList<Model> ids = findBySQL("SELECT id FROM questions ORDER BY RAND() LIMIT ?", count);
         return ids.stream().map(Model::getLongId);

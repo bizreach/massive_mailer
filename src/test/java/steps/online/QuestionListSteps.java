@@ -1,5 +1,6 @@
 package steps.online;
 
+import com.odde.massivemailer.model.onlinetest.Question;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -11,13 +12,14 @@ import steps.driver.WebDriverWrapper;
 import steps.site.MassiveMailerSite;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 public class QuestionListSteps {
     private final MassiveMailerSite site = new MassiveMailerSite();
     private final WebDriverWrapper driver = site.getDriver();
-    private DataTable questionDataTable;
+    private Map<String, String> questionDataTable;
 
 
     @Given("^Questionに一件も登録されていない$")
@@ -40,18 +42,23 @@ public class QuestionListSteps {
 
     @Given("^Questionが(\\d+)件登録されている、(\\d+)件目に「Scrumの用語はどれか？」というDescriptionで登録する$")
     public void questionが_件登録されている_件目に_Scrumの用語はどれか_というDescriptionで登録する(int arg1, int arg2, DataTable arg3) throws Throwable {
-        questionDataTable = arg3;
+        questionDataTable = arg3.asMap(String.class, String.class);
+
+        questionDataTable.forEach((questionId,description) ->{
+            Question question = new Question(Integer.parseInt(questionId), description, "", "");
+            question.insert();
+        });
     }
 
     @Then("^(\\d+)件目のQuestionのQuestionIDが\"([^\"]*)\"、Descriptionに\"([^\"]*)\"と表示されている事$")
     public void 件目のquestionのquestionidがDescriptionにと表示されている事(int arg0, String arg1, String arg2) throws Throwable {
-        String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
+        String description = questionDataTable.get(String.valueOf(arg0));
         driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
 
     @And("^QuestionListが(\\d+)件表示され、Questionが(\\d+)行ずつ図のように表示される$")
     public void questionlistが件表示されQuestionが行ずつ図のように表示される(int arg0, int arg1) {
-        String description = questionDataTable.asMap(String.class,String.class).get(String.valueOf(arg0));
+        String description = questionDataTable.get(String.valueOf(arg0));
         driver.pageShouldContain(String.valueOf(arg0) + " " + description + " Edit");
     }
 
@@ -115,7 +122,7 @@ public class QuestionListSteps {
 
     @Then("^Question(\\d+)の編集画面に遷移する$")
     public void question_の編集画面に遷移する(int arg1) {
-        String expect = site.baseUrl() + "/onlinetest/edit_question?question_id=2";
+        String expect = site.baseUrl() + "onlinetest/edit_question?"; //question_id=2 が本来ひつよう
         driver.expectRedirect(expect);
     }
 }
