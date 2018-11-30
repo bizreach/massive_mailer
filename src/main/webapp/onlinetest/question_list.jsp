@@ -36,7 +36,7 @@
 									<tr>
 										<td>${question.getId()}</td>
 										<td>${question.getDescription()}</td>
-										<td><input type="button" onclick="location.href='edit_question?question_id=${question.getId()}'">Edit</td>
+										<td><a style="background-color: #c0c0c0; padding: 5px;" href=edit_question?question_id=${question.getId()}>Edit</a></td>
 									</tr>
 								</c:forEach>
 								</tbody>
