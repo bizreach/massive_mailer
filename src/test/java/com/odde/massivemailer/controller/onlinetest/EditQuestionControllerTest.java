@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -62,10 +61,21 @@ public class EditQuestionControllerTest {
     }
 
     @Test
-    public void doPostEditQuestion() throws Exception {
+    public void test_doPostEditQuestion_redirect() throws Exception {
         // ### Arrange ###
         final String redirectUrl = "/onlinetest/question_list.jsp";
+        createDefaultRequestWithTestData();
 
+        // ### Act ###
+        controller.doPost(request, response);
+
+        // ### Assert ###
+        assertEquals(redirectUrl, response.getRedirectedUrl());
+    }
+
+    @Test
+    public void test_doPostEditQuestion_updateData() throws Exception {
+        // ### Arrange ###
         final String testDescription = "Choose Scrum's word.";
         final String testAdvice = "Read Scrum Guide";
         final Map<String, String> optionTestCases = new HashMap<String, String>() {
@@ -81,8 +91,8 @@ public class EditQuestionControllerTest {
         final String testCheck = "3";
 
         // create test data
-        QuestionAndOption questionAndOption = addTestQuestion();
-        Question question = questionAndOption.getQuestion();
+        final QuestionAndOption questionAndOption = addTestQuestion();
+        final Question question = questionAndOption.getQuestion();
 
         // prepare request
         createTestRequest(testDescription, testAdvice, optionTestCases, testCheck, question);
@@ -91,8 +101,16 @@ public class EditQuestionControllerTest {
         controller.doPost(request, response);
 
         // ### Assert ###
-        assertEquals(redirectUrl, response.getRedirectedUrl());
         assertEditedQuestion(testDescription, testAdvice, optionTestCases, (Long) question.getId());
+    }
+
+    private void createDefaultRequestWithTestData() {
+        // create test data
+        final QuestionAndOption questionAndOption = addTestQuestion();
+        final Question question = questionAndOption.getQuestion();
+
+        // create default request
+        createDefaultRequest(question);
     }
 
     private void assertEditedQuestion(String testDescription, String testAdvice, Map<String, String> optionTestCases, Long questionId) {
@@ -114,6 +132,23 @@ public class EditQuestionControllerTest {
         assertFalse(editedOptionList.get(3).isCorrect());
         assertFalse(editedOptionList.get(4).isCorrect());
         assertFalse(editedOptionList.get(5).isCorrect());
+    }
+
+    private void createDefaultRequest(Question question) {
+        final String testDescription = "Choose Scrum's word.";
+        final String testAdvice = "Read Scrum Guide";
+        final Map<String, String> optionTestCases = new HashMap<String, String>() {
+            {
+                put("option1", "Python");
+                put("option2", "Ceremony");
+                put("option3", "TDD");
+                put("option4", "Working Agreement");
+                put("option5", "Terraform");
+                put("option6", "Vim");
+            }
+        };
+        final String testCheck = "2";
+        createTestRequest(testDescription, testAdvice, optionTestCases, testCheck, question);
     }
 
     private void createTestRequest(String testDescription, String testAdvice, Map<String, String> optionTestCases, String testCheck, Question question) {
