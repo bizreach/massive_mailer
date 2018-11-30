@@ -56,7 +56,7 @@ public class EditQuestionController extends AppController {
         List<AnswerOption> optionList = new ArrayList<>(question.getOptions());
         for (int i = 0; i < optionList.size() ; i++) {
             AnswerOption option = optionList.get(i);
-            option.set("description", request.getParameter("option" + i));
+            option.set("description", request.getParameter("option" + (i + 1)));
             option.saveIt();
         }
     }
