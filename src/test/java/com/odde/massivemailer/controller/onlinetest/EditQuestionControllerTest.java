@@ -104,10 +104,12 @@ public class EditQuestionControllerTest {
         assertEquals(editedQuestion.getAdvice(), testAdvice);
 
         List<AnswerOption> editedOptionList = new ArrayList<>(editedQuestion.getOptions());
-        for (int i = 0; i < editedOptionList.size(); i++) {
-            AnswerOption editedOption = editedOptionList.get(i);
-            assertEquals(testCases.get("option" + i), editedOption.getDescription());
-        }
+        assertEquals(testCases.get("option0"), editedOptionList.get(0).getDescription());
+        assertEquals(testCases.get("option1"), editedOptionList.get(1).getDescription());
+        assertEquals(testCases.get("option2"), editedOptionList.get(2).getDescription());
+        assertEquals(testCases.get("option3"), editedOptionList.get(3).getDescription());
+        assertEquals(testCases.get("option4"), editedOptionList.get(4).getDescription());
+        assertEquals(testCases.get("option5"), editedOptionList.get(5).getDescription());
     }
 
     private QuestionAndOption addTestQuestion() {
