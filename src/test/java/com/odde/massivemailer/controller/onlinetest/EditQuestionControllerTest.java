@@ -74,7 +74,7 @@ public class EditQuestionControllerTest {
     }
 
     @Test
-    public void test_doPostEditQuestion_updateData() throws Exception {
+    public void test_doPostEditQuestion_6つのOptionを指定した場合() throws Exception {
         // ### Arrange ###
         final String testDescription = "Choose Scrum's word.";
         final String testAdvice = "Read Scrum Guide";
@@ -86,6 +86,34 @@ public class EditQuestionControllerTest {
                 put("option4", "Assembler");
                 put("option5", "C");
                 put("option6", "Lisp");
+            }
+        };
+        final String testCheck = "3";
+
+        // create test data
+        final QuestionAndOption questionAndOption = addTestQuestion();
+        final Question question = questionAndOption.getQuestion();
+
+        // prepare request
+        createTestRequest(testDescription, testAdvice, optionTestCases, testCheck, question);
+
+        // ### Act ###
+        controller.doPost(request, response);
+
+        // ### Assert ###
+        assertEditedQuestion(testDescription, testAdvice, optionTestCases, (Long) question.getId());
+    }
+
+    @Test
+    public void test_doPostEditQuestion_3つのOptionを指定した場合() throws Exception {
+        // ### Arrange ###
+        final String testDescription = "Choose Scrum's word.";
+        final String testAdvice = "Read Scrum Guide";
+        final Map<String, String> optionTestCases = new HashMap<String, String>() {
+            {
+                put("option1", "Java");
+                put("option2", "Python");
+                put("option3", "Planning");
             }
         };
         final String testCheck = "3";
