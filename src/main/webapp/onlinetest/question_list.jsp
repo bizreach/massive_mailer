@@ -1,7 +1,13 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.odde.massivemailer.model.onlinetest.Question" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%
+	List<Question> questions = (List<Question>)request.getAttribute("questions");
+	pageContext.setAttribute("questions", questions);
+%>
 <t:with_side_menu title="Question List">
     <jsp:body>
 			<div class="container-fluid">
@@ -14,11 +20,10 @@
 				</div>
 				<!-- /.row -->
 
-				<form method="get" action="edit_question?question_id=2">
-					<input type="hidden" id="msg_sent_cnt" value="${param.repcnt}" />
-					<div class="col-lg-12" id="questionTables">
-						<div class="panel panel-default">
-							<table class="table table-responsive table-bordered">
+				<input type="hidden" id="msg_sent_cnt" value="${param.repcnt}" />
+				<div class="col-lg-12" id="questionTables">
+					<div class="panel panel-default">
+						<table class="table table-responsive table-bordered">
 								<thead>
 								<tr>
 									<th>QuestionID</th>
@@ -27,61 +32,17 @@
 								</tr>
 								</thead>
 								<tbody id="questionTable">
-								<tr>
-									<td>1</td>
-									<td>Scrumの用語はどれか？</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>あ</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>い</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>う</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>え</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>お</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>か</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>き</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>く</td>
-									<td><button>Edit</button></td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>け</td>
-									<td><button>Edit</button></td>
-								</tr>
+								<c:forEach items="${questions}" var="question">
+									<tr>
+										<td>${question.getId()}</td>
+										<td>${question.getDescription()}</td>
+										<td><input type="button" onclick="location.href='edit_question?question_id=${question.getId()}'">Edit</td>
+									</tr>
+								</c:forEach>
 								</tbody>
-							</table>
-						</div>
+						</table>
 					</div>
-				</form>
+				</div>
 
 			<div class="modal fade" id="editContactModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">

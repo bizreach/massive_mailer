@@ -32,7 +32,7 @@ public class QuestionListSteps {
     @When("^左部のサイドバーのQuestionListをクリックしたとき$")
     public void 左部のサイドバーのQuestionListをクリックしたとき() {
 
-        site.visit("onlinetest/question_list.jsp");
+        site.visit("onlinetest/question_list");
     }
 
     @Then("^QuestonList画面にヘッダのみ表示される$")
@@ -102,9 +102,14 @@ public class QuestionListSteps {
     }
 
     @Given("^QuestionListが開かれ、Questionが登録されている$")
-    public void questionlistが開かれ_Questionが登録されている() {
+    public void questionlistが開かれ_Questionが登録されている(DataTable arg1) {
+        questionDataTable = arg1.asMap(String.class, String.class);
 
-        site.visit("onlinetest/question_list.jsp");
+        questionDataTable.forEach((questionId,description) ->{
+            Question question = new Question(Integer.parseInt(questionId), description, "", "");
+            question.insert();
+        });
+        site.visit("onlinetest/question_list");
 
         // ここでデータのDelete-Insertが必要かも
     }
