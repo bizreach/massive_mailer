@@ -1,12 +1,12 @@
 Feature: Question List
 
-  @now
+  @developing
   Scenario: Questionがない時の一覧表示
     Given Questionに一件も登録されていない
     When 左部のサイドバーのQuestionListをクリックしたとき
     Then QuestonList画面にヘッダのみ表示される
 
-  @now
+  @developing
   Scenario: クエスチョンがある時の一覧の表示
     Given Questionが10件登録されている、1件目に「Scrumの用語はどれか？」というDescriptionで登録する
       | 1 | Scrumの用語はどれか？  |
@@ -30,4 +30,3 @@ Feature: Question List
     Given QuestionListが開かれ、Questionが登録されている
     When Question2のレコードの「Edit」ボタンを押した時
     Then Question2の編集画面に遷移する
-
